@@ -10,9 +10,8 @@ target into ``FreightFate.app`` and, optionally, a device ``FreightFate.ipa``:
 * the executable, with the baked world data, the committed loose sounds and
   the sound and music packs beside it (an iOS bundle is flat, so the game's
   "resources beside the executable" layout already fits);
-* BASS and its add-ons as embedded frameworks under ``Frameworks/``,
-  downloaded from un4seen and pinned by SHA-256 like ``fetch_bass.py``'s
-  desktop libraries (BASS is proprietary and never committed);
+* nothing under ``Frameworks/``: SDL2, Prism and the audio engine are
+  all linked into the executable;
 * an ``Info.plist`` declaring controller support, and the app icon compiled
   from ``crates/freight-fate/ios/Assets.xcassets``;
 * a code signature: ad-hoc for the Simulator or an IPA to be re-signed by
@@ -34,12 +33,9 @@ Run from the repository root:
 The Simulator build targets Apple Silicon Macs (``aarch64-apple-ios-sim``).
 """
 
-# ruff: noqa: W191 -- tabs follow the repository contributor instructions.
-
 from __future__ import annotations
 
 import argparse
-import hashlib
 import importlib.util
 import itertools
 import os
@@ -48,15 +44,12 @@ import shutil
 import subprocess
 import sys
 import tempfile
-import urllib.request
-import zipfile
 from dataclasses import dataclass
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 BUILD = ROOT / "build"
 IOS_BUILD = BUILD / "ios"
-BASS_CACHE = IOS_BUILD / "bass"
 APP_NAME = "FreightFate"
 BUNDLE_ID = "net.orinks.freightfate"
 ASSET_CATALOG = ROOT / "crates" / "freight-fate" / "ios" / "Assets.xcassets"
@@ -72,44 +65,11 @@ class Target:
     triple: str
     sdk: str
     platform: str
-    xcframework_slice_prefix: str
     simulator: bool
 
 
-SIMULATOR = Target("aarch64-apple-ios-sim", "iphonesimulator", "iPhoneSimulator", "ios-arm64", True)
-DEVICE = Target("aarch64-apple-ios", "iphoneos", "iPhoneOS", "ios-arm64", False)
-
-
-@dataclass(frozen=True)
-class BassArchive:
-    url: str
-    sha256: str
-    framework: str
-
-
-# un4seen's iOS builds, one XCFramework per library, pinned by SHA-256.
-BASS_ARCHIVES = (
-    BassArchive(
-        "https://www.un4seen.com/files/bass24-ios.zip",
-        "087bdb8aec6735a8b8de21253e07270f647cfb7bb3e1f276efa7ba979d46836e",
-        "bass",
-    ),
-    BassArchive(
-        "https://www.un4seen.com/files/bassopus24-ios.zip",
-        "33b44809e9e8aa7a949386213336d0b8fa73652ef058caa63aa7cea5d72c2a96",
-        "bassopus",
-    ),
-    BassArchive(
-        "https://www.un4seen.com/files/bassflac24-ios.zip",
-        "57dd543278b63e75e6ecd236ee0b9afaf5d79e8ad0880a81d565d5d2ed4aed50",
-        "bassflac",
-    ),
-    BassArchive(
-        "https://www.un4seen.com/files/basshls24-ios.zip",
-        "9210a70978faa0352906b1932851569a890c7f3f77859bcad3514bb2c08b03af",
-        "basshls",
-    ),
-)
+SIMULATOR = Target("aarch64-apple-ios-sim", "iphonesimulator", "iPhoneSimulator", True)
+DEVICE = Target("aarch64-apple-ios", "iphoneos", "iPhoneOS", False)
 
 
 def load_build_release():
@@ -121,76 +81,6 @@ def load_build_release():
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     return module
-
-
-def sha256_of(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as f:
-        for chunk in iter(lambda: f.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
-
-
-def fetch_bass_archive(archive: BassArchive, cache: Path = BASS_CACHE) -> Path:
-    """Download (once) and verify one BASS iOS archive; return the zip."""
-    cache.mkdir(parents=True, exist_ok=True)
-    destination = cache / archive.url.rsplit("/", 1)[-1]
-    if destination.is_file() and sha256_of(destination) == archive.sha256:
-        return destination
-    with tempfile.NamedTemporaryFile(dir=cache, suffix=".download", delete=False) as temp:
-        temporary = Path(temp.name)
-    try:
-        request = urllib.request.Request(
-            archive.url, headers={"User-Agent": "Freight-Fate-ios-builder"}
-        )
-        with urllib.request.urlopen(request) as response, temporary.open("wb") as out:
-            shutil.copyfileobj(response, out)
-        actual = sha256_of(temporary)
-        if actual != archive.sha256:
-            raise RuntimeError(
-                f"{destination.name} failed SHA-256 verification: "
-                f"expected {archive.sha256}, got {actual}"
-            )
-        temporary.replace(destination)
-    finally:
-        temporary.unlink(missing_ok=True)
-    return destination
-
-
-def xcframework_slice(xcframework: Path, target: Target) -> Path:
-    """The ``.framework`` inside an XCFramework built for ``target``."""
-    info = plistlib.loads((xcframework / "Info.plist").read_bytes())
-    for library in info.get("AvailableLibraries", []):
-        wants_simulator = library.get("SupportedPlatformVariant") == "simulator"
-        if (
-            library.get("SupportedPlatform") == "ios"
-            and wants_simulator == target.simulator
-            and "arm64" in library.get("SupportedArchitectures", [])
-        ):
-            return xcframework / library["LibraryIdentifier"] / library["LibraryPath"]
-    raise RuntimeError(f"{xcframework.name} has no arm64 slice for {target.platform}")
-
-
-def stage_bass_frameworks(frameworks_dir: Path, target: Target) -> list[Path]:
-    """Copy each BASS framework's slice for ``target`` into the app."""
-    staged = []
-    frameworks_dir.mkdir(parents=True, exist_ok=True)
-    for archive in BASS_ARCHIVES:
-        zip_path = fetch_bass_archive(archive)
-        unpacked = BASS_CACHE / zip_path.stem
-        if not unpacked.is_dir():
-            with zipfile.ZipFile(zip_path) as z:
-                z.extractall(unpacked)
-        xcframework = next(unpacked.rglob(f"{archive.framework}.xcframework"), None)
-        if xcframework is None:
-            raise RuntimeError(f"{zip_path.name} holds no {archive.framework}.xcframework")
-        framework = xcframework_slice(xcframework, target)
-        destination = frameworks_dir / framework.name
-        if destination.exists():
-            shutil.rmtree(destination)
-        shutil.copytree(framework, destination, symlinks=True)
-        staged.append(destination)
-    return staged
 
 
 def store_version(version: str) -> str:
@@ -312,7 +202,10 @@ def cargo_build(target: Target, release: bool) -> Path:
         "build",
         "-p",
         "freight-fate",
+        # No agent server; the visual display is what draws the screen.
         "--no-default-features",
+        "--features",
+        "visuals",
         "--target",
         target.triple,
     ]
@@ -356,8 +249,8 @@ def stage_app(
         shutil.rmtree(app)
     app.mkdir(parents=True)
     baked = build_release.bake_world_data(out=IOS_BUILD / build_release.RUST_BAKED_FILE)
-    # The desktop layout plan, minus native libraries (BASS arrives as
-    # frameworks below): executable, baked world, data files, loose sounds.
+    # The desktop layout plan, minus native libraries (there are none to
+    # embed): executable, baked world, data files, loose sounds.
     plan = build_release.plan_rust_layout(
         profile_dir, platform_name="ios", native_exts={".framework"}, baked_data=baked
     )
@@ -379,7 +272,8 @@ def stage_app(
         shutil.copy2(credits, app / "SOUND_CREDITS.md")
     build_release.stamp_build_info(app, label, root=app)
 
-    frameworks = stage_bass_frameworks(app / "Frameworks", target)
+    # Nothing to embed: the audio engine is compiled in with everything else.
+    frameworks: list[Path] = []
     info = info_plist(build_release.project_version(), target, build_number)
     info.update(compile_icon(app, target))
     if not target.simulator:
@@ -410,74 +304,76 @@ def simctl(*args: str) -> None:
 
 
 def main(argv: list[str] | None = None) -> int:
-	parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-	parser.add_argument(
-		"--sideload",
-		action="store_true",
-		help="build a device .ipa for re-signing in a sideloading tool; no signing credentials needed",
-	)
-	parser.add_argument("--device", action="store_true", help="build for a real iPhone or iPad")
-	parser.add_argument("--debug", action="store_true", help="a debug build (default: release)")
-	parser.add_argument("--tag", help="build label (default: the project version)")
-	parser.add_argument(
-		"--no-music", action="store_true", help="skip downloading and staging music.pak"
-	)
-	parser.add_argument(
-		"--build-number",
-		help="CFBundleVersion (default: the project version); must rise per upload",
-	)
-	parser.add_argument("--ipa", action="store_true", help="also package a device build as an .ipa")
-	parser.add_argument("--sign-identity", help="codesign identity for a device build")
-	parser.add_argument(
-		"--provisioning-profile", type=Path, help="provisioning profile for a device build"
-	)
-	parser.add_argument(
-		"--simulator",
-		default="booted",
-		help="Simulator to install into with --install (UDID or 'booted')",
-	)
-	parser.add_argument("--install", action="store_true", help="install into the Simulator")
-	parser.add_argument("--launch", action="store_true", help="launch after installing")
-	args = parser.parse_args(argv)
+    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    parser.add_argument(
+        "--sideload",
+        action="store_true",
+        help="build a device .ipa for re-signing in a sideloading tool; no signing credentials needed",
+    )
+    parser.add_argument("--device", action="store_true", help="build for a real iPhone or iPad")
+    parser.add_argument("--debug", action="store_true", help="a debug build (default: release)")
+    parser.add_argument("--tag", help="build label (default: the project version)")
+    parser.add_argument(
+        "--no-music", action="store_true", help="skip downloading and staging music.pak"
+    )
+    parser.add_argument(
+        "--build-number",
+        help="CFBundleVersion (default: the project version); must rise per upload",
+    )
+    parser.add_argument("--ipa", action="store_true", help="also package a device build as an .ipa")
+    parser.add_argument("--sign-identity", help="codesign identity for a device build")
+    parser.add_argument(
+        "--provisioning-profile", type=Path, help="provisioning profile for a device build"
+    )
+    parser.add_argument(
+        "--simulator",
+        default="booted",
+        help="Simulator to install into with --install (UDID or 'booted')",
+    )
+    parser.add_argument("--install", action="store_true", help="install into the Simulator")
+    parser.add_argument("--launch", action="store_true", help="launch after installing")
+    args = parser.parse_args(argv)
 
-	device = args.device or args.sideload
-	target = DEVICE if device else SIMULATOR
-	if args.sideload and (args.sign_identity or args.provisioning_profile):
-		parser.error("--sideload cannot be combined with signing credentials; use --device --ipa")
-	if device and not args.sideload and not (args.sign_identity and args.provisioning_profile):
-		parser.error("--device needs --sign-identity and --provisioning-profile")
-	if device and (args.install or args.launch):
-		parser.error("--install and --launch are for the Simulator")
-	if args.ipa and not device:
-		parser.error("--ipa is for a device build")
+    device = args.device or args.sideload
+    target = DEVICE if device else SIMULATOR
+    if args.sideload and (args.sign_identity or args.provisioning_profile):
+        parser.error("--sideload cannot be combined with signing credentials; use --device --ipa")
+    if device and not args.sideload and not (args.sign_identity and args.provisioning_profile):
+        parser.error("--device needs --sign-identity and --provisioning-profile")
+    if device and (args.install or args.launch):
+        parser.error("--install and --launch are for the Simulator")
+    if args.ipa and not device:
+        parser.error("--ipa is for a device build")
 
-	build_release = load_build_release()
-	label = args.tag or build_release.project_version()
-	profile_dir = cargo_build(target, release=not args.debug)
-	app, frameworks = stage_app(
-		profile_dir, target, label, build_release, not args.no_music, args.build_number
-	)
+    build_release = load_build_release()
+    label = args.tag or build_release.project_version()
+    profile_dir = cargo_build(target, release=not args.debug)
+    app, frameworks = stage_app(
+        profile_dir, target, label, build_release, not args.no_music, args.build_number
+    )
 
-	entitlements = None
-	identity = "-"
-	if device and not args.sideload:
-		identity = args.sign_identity
-		shutil.copy2(args.provisioning_profile, app / "embedded.mobileprovision")
-		entitlements = IOS_BUILD / "entitlements.plist"
-		with entitlements.open("wb") as f:
-			plistlib.dump(provisioning_entitlements(args.provisioning_profile), f)
-	codesign(app, frameworks, identity, entitlements)
-	print(f"Built {app}")
-	if args.ipa or args.sideload:
-		print(f"Packaged {package_ipa(app)}")
-	if args.sideload:
-		print("Re-sign and install the IPA with your sideloading tool before running it on a device.")
+    entitlements = None
+    identity = "-"
+    if device and not args.sideload:
+        identity = args.sign_identity
+        shutil.copy2(args.provisioning_profile, app / "embedded.mobileprovision")
+        entitlements = IOS_BUILD / "entitlements.plist"
+        with entitlements.open("wb") as f:
+            plistlib.dump(provisioning_entitlements(args.provisioning_profile), f)
+    codesign(app, frameworks, identity, entitlements)
+    print(f"Built {app}")
+    if args.ipa or args.sideload:
+        print(f"Packaged {package_ipa(app)}")
+    if args.sideload:
+        print(
+            "Re-sign and install the IPA with your sideloading tool before running it on a device."
+        )
 
-	if args.install or args.launch:
-		simctl("install", args.simulator, str(app))
-	if args.launch:
-		simctl("launch", args.simulator, BUNDLE_ID)
-	return 0
+    if args.install or args.launch:
+        simctl("install", args.simulator, str(app))
+    if args.launch:
+        simctl("launch", args.simulator, BUNDLE_ID)
+    return 0
 
 
 if __name__ == "__main__":
