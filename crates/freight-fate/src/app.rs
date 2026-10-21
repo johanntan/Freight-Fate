@@ -45,6 +45,7 @@ pub mod held_keys;
 pub mod key_probe;
 pub mod language;
 pub mod logging;
+pub mod loop_watch;
 pub mod sdl_shell;
 pub mod speech_delivery;
 pub mod synth_music;
@@ -161,6 +162,9 @@ pub struct App {
     touch_bound_hold: Option<crate::bindings::Chord>,
     /// The co-driver's place on the screens over the drive.
     co_driver: co_driver::CoDriverHands,
+    /// The watch that logs a frame part holding the loop (see
+    /// `app::loop_watch`); only the windowed loop starts one.
+    loop_watch: Option<loop_watch::LoopWatch>,
 }
 
 /// Read-only driving facts available to a normal-input policy.
@@ -577,6 +581,14 @@ impl App {
             key_probe: None,
             touch_bound_hold: None,
             co_driver: co_driver::CoDriverHands::default(),
+            loop_watch: None,
+        }
+    }
+
+    /// Tell the loop watch which part of the frame is starting.
+    fn mark(&self, phase: loop_watch::Phase) {
+        if let Some(watch) = &self.loop_watch {
+            watch.mark(phase);
         }
     }
 
@@ -977,6 +989,7 @@ impl App {
     fn route_event(&mut self, event: &InputEvent) {
         match event {
             InputEvent::WindowFocusGained => {
+                log::info!("window focus returned");
                 // Switching screen readers happens outside the game;
                 // re-check speech the moment the player comes back. The
                 // keyboard's repeat timing is re-read for the same reason:
@@ -994,6 +1007,7 @@ impl App {
                 self.dispatch_to_state(event);
             }
             InputEvent::WindowFocusLost => {
+                log::info!("window focus lost");
                 self.ctx.input.clear();
                 self.dispatch_to_state(event);
             }
@@ -1182,6 +1196,7 @@ impl App {
 
     /// One whole frame: pump events, tick, render. `dt` is the frame time.
     pub fn frame(&mut self, dt: f64) {
+        self.mark(loop_watch::Phase::Events);
         let mut events = match self.shell.as_mut() {
             Some(shell) => match shell.poll() {
                 Some(events) => events,
@@ -1214,6 +1229,11 @@ impl App {
             probe.begin_frame(&self.ctx.input);
         }
         for event in &events {
+            self.mark(match event {
+                InputEvent::WindowFocusLost => loop_watch::Phase::FocusLost,
+                InputEvent::WindowFocusGained => loop_watch::Phase::FocusGained,
+                _ => loop_watch::Phase::Input,
+            });
             self.handle_event(event);
             if let Some(probe) = self.key_probe.as_mut() {
                 probe.note(&self.ctx.input, event);
@@ -1222,10 +1242,13 @@ impl App {
         if let Some(probe) = self.key_probe.as_mut() {
             probe.end_frame(&self.ctx.input);
         }
+        self.mark(loop_watch::Phase::Update);
         self.tick(dt);
         self.co_driver_fast_forward();
         self.sync_text_field();
+        self.mark(loop_watch::Phase::Render);
         self.render();
+        self.mark(loop_watch::Phase::BetweenFrames);
     }
 
     /// Tell the shell whether the active screen takes typed text.
@@ -1268,6 +1291,7 @@ impl App {
         self.ctx.services.duty.start(); // opt-in on/off duty notices; dormant unless on
         self.ctx.services.cloud.start(); // opt-in save backup; dormant unless confirmed
         boot_timing::mark("background services started");
+        self.loop_watch = loop_watch::LoopWatch::start();
         let mut frames = 0u32;
         while self.ctx.running {
             let dt = self.clock.tick(FPS);
@@ -1292,6 +1316,9 @@ impl App {
             if max_frames.is_some_and(|max| frames >= max) {
                 self.ctx.running = false;
             }
+        }
+        if let Some(mut watch) = self.loop_watch.take() {
+            watch.shutdown();
         }
         self.shutdown();
     }
