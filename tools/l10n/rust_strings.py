@@ -136,6 +136,7 @@ SKIP_PATH_PARTS = (
     "single_instance",
     "/app/logging",
     "/app/boot_timing",
+    "/app/loop_watch",
 )
 
 IDENT_RE = re.compile(r"[A-Za-z_][A-Za-z0-9_]*")
