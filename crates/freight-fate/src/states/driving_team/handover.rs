@@ -91,7 +91,8 @@ fn short_shift_text(ctx: &GameContext, d: &DrivingState, name: &str) -> Option<S
     let rest_left = co_driver::rest_left_min(player);
     (rest_left > hours_left).then(|| {
         format!(
-            "{name} has {} of driving left, short of your 10-hour rest.",
+            "{name} has {} of driving left, short of your 10-hour rest, so they park and you \
+             finish it there.",
             hos::duration_text(hours_left.max(0.0) / 60.0)
         )
     })

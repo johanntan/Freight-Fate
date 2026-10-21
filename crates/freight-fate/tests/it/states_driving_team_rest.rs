@@ -256,10 +256,14 @@ fn woken_early_the_player_hears_how_much_rest_they_had() {
 #[test]
 fn woken_from_a_slept_shift_the_player_hears_the_rest_still_to_go() {
     // "You slept" already gives the time, so the rest line says what is
-    // left of it rather than repeating the same number.
+    // left of it rather than repeating the same number. No lot on the way:
+    // with one, the co-driver parks there and the rest is slept out.
     let mut harness = quiet_drive("Team Rest Woken");
     hand_over_after(&mut harness, 300.0, TeamMode::SleepThrough);
     harness.with_drive(|d, _| {
+        d.trip
+            .stops
+            .retain(|stop| stop.stop_type == "delivery_destination");
         d.truck_mut().start_engine();
         d.truck_mut().set_air_ready(false);
         d.truck_mut().parking_brake = false;

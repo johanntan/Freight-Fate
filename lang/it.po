@@ -31942,6 +31942,17 @@ msgstr ""
 msgid "{name} has parked and hands you the wheel. Your 10-hour rest is in."
 msgstr ""
 
+#. placeholders: {name}
+#. one sentence of a longer line
+msgid "{name} parked when their hours ran out, and you slept on."
+msgstr ""
+
+#. placeholders: {name}
+msgid ""
+"{name} parked when their hours ran out, and you slept on. Your 10-hour rest "
+"is in."
+msgstr ""
+
 #. one sentence of a longer line
 msgid "Their hours run out before the next place to park."
 msgstr ""
@@ -32099,7 +32110,8 @@ msgstr ""
 
 #. placeholders: {name}, {duration_text}
 msgid ""
-"{name} has {duration_text} of driving left, short of your 10-hour rest."
+"{name} has {duration_text} of driving left, short of your 10-hour rest, so "
+"they park and you finish it there."
 msgstr ""
 
 #. placeholders: {name}
@@ -32291,6 +32303,9 @@ msgstr ""
 #. placeholders: {name}, {f}
 msgid "Team load: {name} drove {f} of the miles"
 msgstr "Carico in coppia: {name} ha guidato {f} delle miglia"
+
+msgid "slept on"
+msgstr ""
 
 #. placeholders: {name}, {gallons}, {place}
 msgid ""
