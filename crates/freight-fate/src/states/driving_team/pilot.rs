@@ -231,8 +231,12 @@ impl DrivingState {
         // the 30 minutes are taken on the shoulder, and they drive on.
         // Before the stops are planned: an overdue break also reads as the
         // end of their hours there.
+        // With the rest in, `pilot_boundary` hands back for the break instead.
         let making_for_break = matches!(pilot.making_for, Some((_, StopPurpose::Break)));
-        if co_driver::break_overdue(hos_of(ctx), &ctx.settings.hos_mode) && !making_for_break {
+        if co_driver::break_overdue(hos_of(ctx), &ctx.settings.hos_mode)
+            && !making_for_break
+            && self.co_driver_shoulder_due(ctx)
+        {
             if speed > 0.5 {
                 pedals.brake = true;
                 return Ok(pedals);

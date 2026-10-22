@@ -555,3 +555,31 @@ fn a_break_due_with_no_stop_in_reach_is_taken_on_the_shoulder() {
         .since_break_min;
     assert!(since_break < 5.0, "the break counts: {since_break}");
 }
+
+#[test]
+fn with_the_rest_in_a_break_due_short_of_a_stop_hands_back() {
+    // The shoulder break is for a player still owed rest. Rested, the
+    // player takes the wheel instead of the truck stopping in its lane.
+    let mut harness = quiet_drive("Team Rested Break");
+    hand_over_after(&mut harness, 300.0, TeamMode::RideAlong);
+    player_sleeper(&mut harness, 600.0);
+    harness.with_drive(|d, _| {
+        d.trip
+            .stops
+            .retain(|stop| stop.stop_type == "delivery_destination");
+        d.truck_mut().start_engine();
+        d.truck_mut().set_air_ready(false);
+        d.truck_mut().parking_brake = false;
+        d.truck_mut().velocity_mps = 60.0 / 2.236_936;
+        d.cruise_mph = Some(60.0);
+    });
+    let hos = &mut harness.app.ctx.profile.as_mut().expect("a career").hos;
+    hos.drive(7.0 * 60.0 + 50.0);
+    let woken = run_until(&mut harness, 60 * 60 * 2, |h| {
+        h.read_drive(|d| d.team.as_ref().is_some_and(|team| team.wheel.is_none()))
+    });
+    assert!(woken, "{}", tail(&harness));
+    let said = harness.transcript().join("\n");
+    assert!(said.contains("Their break is due."), "{said}");
+    assert!(!said.contains("on the shoulder"), "{said}");
+}
