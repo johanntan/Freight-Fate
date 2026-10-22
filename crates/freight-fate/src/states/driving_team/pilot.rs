@@ -33,7 +33,7 @@ const STALL_LIMIT_S: f64 = 180.0;
 const SHIFT_STOP_REACH_MI: f64 = 40.0;
 /// The pace a stop's reach is judged at: a stop farther than this covers in
 /// the time left before the break is due is out of reach.
-const REACH_MPH: f64 = 50.0;
+pub(crate) const REACH_MPH: f64 = 50.0;
 /// How close to the posted limit the co-driver brings the truck by hand
 /// before setting the cruise, and how far under it a set speed may sit
 /// before they tap it up.
@@ -227,17 +227,41 @@ impl DrivingState {
             return Ok(pedals);
         }
 
+        // Their break is due with no stop reached and the player asleep:
+        // the 30 minutes are taken on the shoulder, and they drive on.
+        // Before the stops are planned: an overdue break also reads as the
+        // end of their hours there.
+        let making_for_break = matches!(pilot.making_for, Some((_, StopPurpose::Break)));
+        if co_driver::break_overdue(hos_of(ctx), &ctx.settings.hos_mode) && !making_for_break {
+            if speed > 0.5 {
+                pedals.brake = true;
+                return Ok(pedals);
+            }
+            self.co_driver_shoulder_break(ctx);
+            pilot.beat_s = KEY_BEAT_S;
+            return Ok(pedals);
+        }
+
         self.pilot_plan_stops(ctx, pilot);
         // The shift is ending with no stop to end it at, or the hours are
         // gone before the stop: the player takes over rather than the
-        // co-driver driving past the limit.
+        // co-driver driving past the limit. With the player's rest still
+        // owed, the co-driver stops on the shoulder instead and the rest is
+        // slept out there (see `shoulder`).
         if pilot.shift_over {
             let out = hos_of(ctx)
                 .remaining_min(&ctx.settings.hos_mode)
                 .is_some_and(|left| left <= 0.0);
             // Rested, they keep driving until a lot comes into reach.
             if (pilot.making_for.is_none() && !pilot.rested) || out {
-                return Err("shift".to_string());
+                if !self.co_driver_shoulder_due(ctx) {
+                    return Err("shift".to_string());
+                }
+                if speed > 0.5 {
+                    pedals.brake = true;
+                    return Ok(pedals);
+                }
+                return Err("shoulder".to_string());
             }
         }
 
@@ -605,8 +629,13 @@ impl DrivingState {
         }
         // Their break is due with no stop reached: the player takes over
         // rather than the co-driver driving past the rule.
+        // With the player's rest still owed, the break is taken on the
+        // shoulder instead (see `shoulder`).
         let making_for_break = matches!(pilot.making_for, Some((_, StopPurpose::Break)));
-        if co_driver::break_overdue(hos_of(ctx), &ctx.settings.hos_mode) && !making_for_break {
+        if co_driver::break_overdue(hos_of(ctx), &ctx.settings.hos_mode)
+            && !making_for_break
+            && !self.co_driver_shoulder_due(ctx)
+        {
             return Some("break".to_string());
         }
         None

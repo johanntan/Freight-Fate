@@ -110,6 +110,16 @@ bookmarks usable.
       more and was over the 14-hour window at the yard). The handover rows'
       help gives the co-driver's driving time when it falls short of the
       player's 10-hour rest and says they will park for it.
+      With no lot in reach at all, the co-driver stops on the shoulder and
+      the rest is slept out there on the terms of an emergency shoulder
+      sleep (2026-10-22, after an agent drive on I-5 found no
+      truck lot between Corning and Ripon and was woken with 8.7 hours of
+      the rest owed); the handover help says so first. A co-driver's
+      30-minute break that comes due with no stop in reach is taken on the
+      shoulder too, and they drive on (the same drive was woken for Dan's
+      break in the Shasta mountains with 2.2 hours of the rest owed).
+      The truck stops in its lane for both: there is still no pull-over
+      onto the shoulder itself (see the hand-back item below).
       Still waking the player before the rest is in: what only the driver
       can decide (damage, an empty tank, a trooper, a full lot at the end
       of the shift, chains, the money for fuel) and the receiver's gate.
