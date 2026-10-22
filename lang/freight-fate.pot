@@ -10212,9 +10212,21 @@ msgstr ""
 msgid "Record: clean."
 msgstr ""
 
-#. placeholders: {count_word}, {noun}
 #: crates/ff-core/src/models/enforcement.rs
-msgid "{count_word} {noun} in the last year"
+msgid "safety incident"
+msgstr ""
+
+#: crates/ff-core/src/models/enforcement.rs
+msgid "safety incidents"
+msgstr ""
+
+#: crates/ff-core/src/models/enforcement.rs crates/freight-fate/src/states/online_states/profile.rs
+msgid "crashes"
+msgstr ""
+
+#. placeholders: {join}, {last}
+#: crates/ff-core/src/models/enforcement.rs crates/ff-core/src/models/jobs/catalog.rs crates/freight-fate/src/duty_watch.rs
+msgid "{join} and {last}"
 msgstr ""
 
 #: crates/ff-core/src/models/enforcement.rs crates/freight-fate/src/states/online_states/profile.rs
@@ -10338,7 +10350,7 @@ msgstr ""
 msgid "major"
 msgstr ""
 
-#: crates/ff-core/src/models/enforcement/record.rs crates/freight-fate/src/states/online_states/profile.rs
+#: crates/ff-core/src/models/enforcement/record.rs crates/ff-core/src/models/enforcement.rs crates/freight-fate/src/states/online_states/profile.rs
 msgid "crash"
 msgstr ""
 
@@ -10740,11 +10752,6 @@ msgstr ""
 #. placeholders: {endorsement_label}
 #: crates/ff-core/src/models/jobs/catalog.rs
 msgid "the {endorsement_label}"
-msgstr ""
-
-#. placeholders: {join}, {last}
-#: crates/ff-core/src/models/jobs/catalog.rs crates/freight-fate/src/duty_watch.rs
-msgid "{join} and {last}"
 msgstr ""
 
 #. placeholders: {f}
@@ -12748,7 +12755,7 @@ msgstr ""
 msgid "once"
 msgstr ""
 
-#: crates/ff-core/src/settings.rs crates/ff-core/src/sim/lane.rs
+#: crates/ff-core/src/settings.rs
 msgid "partial"
 msgstr ""
 
@@ -14221,22 +14228,6 @@ msgid "Construction: {spots_text}."
 msgstr ""
 
 #: crates/ff-core/src/sim/season.rs
-msgid "autumn"
-msgstr ""
-
-#: crates/ff-core/src/sim/season.rs
-msgid "spring"
-msgstr ""
-
-#: crates/ff-core/src/sim/season.rs crates/freight-fate/src/visuals/scene_drive.rs
-msgid "summer"
-msgstr ""
-
-#: crates/ff-core/src/sim/season.rs crates/ff-core/src/sim/vehicle.rs crates/freight-fate/src/states/city/truck_status.rs crates/freight-fate/src/states/city_garage.rs
-msgid "winter"
-msgstr ""
-
-#: crates/ff-core/src/sim/season.rs
 msgid "Monday"
 msgstr ""
 
@@ -14262,6 +14253,22 @@ msgstr ""
 
 #: crates/ff-core/src/sim/season.rs
 msgid "Sunday"
+msgstr ""
+
+#: crates/ff-core/src/sim/season.rs crates/ff-core/src/sim/vehicle.rs crates/freight-fate/src/states/city/truck_status.rs crates/freight-fate/src/states/city_garage.rs
+msgid "winter"
+msgstr ""
+
+#: crates/ff-core/src/sim/season.rs
+msgid "spring"
+msgstr ""
+
+#: crates/ff-core/src/sim/season.rs crates/freight-fate/src/visuals/scene_drive.rs
+msgid "summer"
+msgstr ""
+
+#: crates/ff-core/src/sim/season.rs
+msgid "autumn"
 msgstr ""
 
 #: crates/ff-core/src/sim/season.rs
@@ -37233,32 +37240,6 @@ msgid ""
 msgstr ""
 
 #: crates/freight-fate/src/states/logbook.rs
-msgid "Logbook has no recent duty entries yet."
-msgstr ""
-
-#. placeholders: {entry_line}
-#. one sentence of a longer line
-#: crates/freight-fate/src/states/logbook.rs
-msgid "Latest entry: {entry_line}"
-msgstr ""
-
-#. placeholders: {duration_text}, {duration_text2}, {duration_text3}, {duration_text4}
-#. one sentence of a longer line
-#: crates/freight-fate/src/states/logbook.rs
-msgid ""
-"Logbook shows driving {duration_text}, on duty not driving "
-"{duration_text2}, off duty {duration_text3}, sleeper berth {duration_text4}."
-msgstr ""
-
-#. placeholders: {duration_text}, {duration_text2}, {duration_text3}, {duration_text4}, {entry_line}
-#: crates/freight-fate/src/states/logbook.rs
-msgid ""
-"Logbook shows driving {duration_text}, on duty not driving "
-"{duration_text2}, off duty {duration_text3}, sleeper berth "
-"{duration_text4}. Latest entry: {entry_line}"
-msgstr ""
-
-#: crates/freight-fate/src/states/logbook.rs
 msgid ""
 "Use up and down arrows to review logbook lines. Enter repeats the current "
 "line. Escape goes back."
@@ -43052,10 +43033,6 @@ msgstr ""
 
 #: crates/freight-fate/src/states/online_states/profile.rs
 msgid "out-of-service orders"
-msgstr ""
-
-#: crates/freight-fate/src/states/online_states/profile.rs
-msgid "crashes"
 msgstr ""
 
 #: crates/freight-fate/src/states/online_states/profile.rs

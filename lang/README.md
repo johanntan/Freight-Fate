@@ -20,6 +20,7 @@ program.
 | `pl.po` | Polish |
 | `zh_CN.po` | Simplified Chinese |
 | `ja.po` | Japanese |
+| `tr.po` | Turkish |
 
 To play in one of them, open Settings, then Speech; Language is the first
 row. Left and Right change it. Automatic follows your system language.
@@ -122,7 +123,7 @@ msgstr "Осталось {count} {count:миля|мили|миль}."
 
 The forms are in this order:
 
-- Spanish, Portuguese, Italian, German: singular, plural.
+- Spanish, Portuguese, Italian, German, Turkish: singular, plural.
 - French: singular (0 and 1), plural.
 - Russian: one (1, 21, 31), few (2 to 4, 22 to 24), many (5 to 20, 25).
 - Polish: one (1 only), few (2 to 4, 22 to 24), many (the rest).
@@ -165,10 +166,10 @@ that leaves a screen; translate that one.
 - `lang/extra.pot` holds lines the source never spells out whole, added by
   hand. Each one is a template like the others.
 - After changing spoken text in the code, run
-  `uv run python tools/l10n/extract.py`. It rewrites the template and adds
+  `cargo tools l10n-extract`. It rewrites the template and adds
   new lines to every language file, untranslated. CI fails when the files
   are out of date (`--check`).
-- `uv run python tools/l10n/check.py` checks every language file:
+- `cargo tools l10n-check` checks every language file:
   placeholders, numbers, key names, and broken entries. `--stats` prints
   how much of each language is translated.
 - A correction that arrives as an issue goes into the language file as a

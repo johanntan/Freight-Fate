@@ -8176,9 +8176,18 @@ msgstr "記録：CDL{verb}、残り{left}。解除は{clears_text}です。"
 msgid "Record: clean."
 msgstr "記録：問題なし。"
 
-#. placeholders: {count_word}, {noun}
-msgid "{count_word} {noun} in the last year"
-msgstr "過去1年間に{noun}{count_word}件"
+msgid "safety incident"
+msgstr ""
+
+msgid "safety incidents"
+msgstr ""
+
+msgid "crashes"
+msgstr "事故"
+
+#. placeholders: {join}, {last}
+msgid "{join} and {last}"
+msgstr "{join}と{last}"
 
 msgid "major offense"
 msgstr "一発取消違反"
@@ -8594,10 +8603,6 @@ msgstr "標準のCDL"
 #. placeholders: {endorsement_label}
 msgid "the {endorsement_label}"
 msgstr "{endorsement_label}"
-
-#. placeholders: {join}, {last}
-msgid "{join} and {last}"
-msgstr "{join}と{last}"
 
 #. placeholders: {f}
 msgid "{f} driving hours"
@@ -11414,18 +11419,6 @@ msgstr "ルート1は{reason}を避け、{minutes_words}短縮になります。
 msgid "Construction: {spots_text}."
 msgstr "工事：{spots_text}。"
 
-msgid "autumn"
-msgstr "秋"
-
-msgid "spring"
-msgstr "春"
-
-msgid "summer"
-msgstr "夏"
-
-msgid "winter"
-msgstr "冬"
-
 msgid "Monday"
 msgstr "月曜日"
 
@@ -11446,6 +11439,18 @@ msgstr "土曜日"
 
 msgid "Sunday"
 msgstr "日曜日"
+
+msgid "winter"
+msgstr "冬"
+
+msgid "spring"
+msgstr "春"
+
+msgid "summer"
+msgstr "夏"
+
+msgid "autumn"
+msgstr "秋"
 
 msgid "January"
 msgstr "1月"
@@ -30369,32 +30374,6 @@ msgstr ""
 "{sentence_start}、{clock_text}から{clock_text2}、{duration_text}、{location}{note"
 "}。"
 
-msgid "Logbook has no recent duty entries yet."
-msgstr "運転日誌に最近の勤務記録はまだありません。"
-
-#. placeholders: {entry_line}
-#. one sentence of a longer line
-msgid "Latest entry: {entry_line}"
-msgstr "最新の記録：{entry_line}"
-
-#. placeholders: {duration_text}, {duration_text2}, {duration_text3}, {duration_text4}
-#. one sentence of a longer line
-msgid ""
-"Logbook shows driving {duration_text}, on duty not driving "
-"{duration_text2}, off duty {duration_text3}, sleeper berth {duration_text4}."
-msgstr ""
-"運転日誌：運転{duration_text}、運転以外の勤務{duration_text2}、非勤務{duration_text3}、スリーパー{dur"
-"ation_text4}。"
-
-#. placeholders: {duration_text}, {duration_text2}, {duration_text3}, {duration_text4}, {entry_line}
-msgid ""
-"Logbook shows driving {duration_text}, on duty not driving "
-"{duration_text2}, off duty {duration_text3}, sleeper berth "
-"{duration_text4}. Latest entry: {entry_line}"
-msgstr ""
-"運転日誌：運転{duration_text}、運転以外の勤務{duration_text2}、非勤務{duration_text3}、スリーパー{dur"
-"ation_text4}。最新の記録：{entry_line}"
-
 msgid ""
 "Use up and down arrows to review logbook lines. Enter repeats the current "
 "line. Escape goes back."
@@ -35598,9 +35577,6 @@ msgstr "走行禁止命令"
 msgid "out-of-service orders"
 msgstr "走行禁止命令"
 
-msgid "crashes"
-msgstr "事故"
-
 msgid "cargo claim"
 msgstr "積荷の損害賠償請求"
 
@@ -37449,6 +37425,30 @@ msgstr "右かっこ"
 #. placeholders: {ch}
 msgid "cap {ch}"
 msgstr "大文字の{ch}"
+
+#~ msgid "Logbook has no recent duty entries yet."
+#~ msgstr "運転日誌に最近の勤務記録はまだありません。"
+
+#~ msgid "Latest entry: {entry_line}"
+#~ msgstr "最新の記録：{entry_line}"
+
+#~ msgid ""
+#~ "Logbook shows driving {duration_text}, on duty not driving "
+#~ "{duration_text2}, off duty {duration_text3}, sleeper berth {duration_text4}."
+#~ msgstr ""
+#~ "運転日誌：運転{duration_text}、運転以外の勤務{duration_text2}、非勤務{duration_text3}、スリーパー{dur"
+#~ "ation_text4}。"
+
+#~ msgid ""
+#~ "Logbook shows driving {duration_text}, on duty not driving "
+#~ "{duration_text2}, off duty {duration_text3}, sleeper berth "
+#~ "{duration_text4}. Latest entry: {entry_line}"
+#~ msgstr ""
+#~ "運転日誌：運転{duration_text}、運転以外の勤務{duration_text2}、非勤務{duration_text3}、スリーパー{dur"
+#~ "ation_text4}。最新の記録：{entry_line}"
+
+#~ msgid "{count_word} {noun} in the last year"
+#~ msgstr "過去1年間に{noun}{count_word}件"
 
 #~ msgid ""
 #~ "Not a sound of its own: it is the engine you are always hearing, leaning to "

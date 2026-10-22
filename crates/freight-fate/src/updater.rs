@@ -11,7 +11,7 @@
 //! setting follow a distinct family, `1.9-tester-YYYYMMDD`, so a 1.9 tester is
 //! never offered a 1.8 nightly and a 1.8 snapshot never picks a 1.9 tester.
 //! The packaged build carries a `build_info.json` next to the executable
-//! (written by `tools/build_release.py`) recording its tag, channel, and build
+//! (written by `cargo tools build-release`) recording its tag, channel, and build
 //! date; that is how a snapshot knows a newer snapshot exists even though the
 //! project version number has not changed.
 //!
@@ -292,10 +292,6 @@ pub fn install_target_in(env: &UpdaterEnv) -> PathBuf {
         }
     }
     root
-}
-
-pub fn install_target() -> PathBuf {
-    install_target_in(&UpdaterEnv::current())
 }
 
 /// Read build_info.json from the install folder. Returns `None` when
@@ -1175,9 +1171,9 @@ pub use notes::flatten_markdown;
 
 pub use apply::{
     apply_and_restart, apply_and_restart_with, can_auto_apply, download, extract, extract_with,
-    extracted_root, is_translocated, macos_bundle_swappable, make_staging_dir, run_bounded,
-    stage_update, stage_update_with, stash_for_manual_install, stream_to_file, write_apply_script,
-    DownloadError, DOWNLOAD_IDLE_TIMEOUT, UNPACK_TIMEOUT,
+    extracted_root, is_translocated, macos_bundle_swappable, make_staging_dir, quote_for_script,
+    run_bounded, stage_update, stage_update_with, stash_for_manual_install, stream_to_file,
+    write_apply_script, DownloadError, DOWNLOAD_IDLE_TIMEOUT, UNPACK_TIMEOUT,
 };
 
 #[cfg(test)]

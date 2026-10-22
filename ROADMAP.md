@@ -23,7 +23,7 @@
 > flight on the `feat/career-1.9` branch -- driving realism between the exits
 > (discrete lanes, ramp terminals, congestion, real surface streets) plus the
 > highway-spider world expansion, roadside narration, and real time zones.
-> `pyproject` is set to 1.9.0 so developer snapshots report it; the stable tag
+> The package version is set to 1.9.0 so developer snapshots report it; the stable tag
 > follows at release. Keep this file current: when a feature lands on the 1.9
 > line, check it off here in the same change.
 
@@ -45,7 +45,8 @@ bookmarks usable.
       where it leaves for the speech channels, from gettext PO files in
       `lang/` matched as templates, so the code stays English. Settings,
       Speech, Language picks the language (Automatic follows the system on
-      a fresh install; an existing settings file keeps English). Radio and
+      a fresh install; an existing settings file keeps English). Turkish
+      joined the nine on 2026-10-22 (issue 397). Radio and
       recordings stay English. `lang/README.md` is the translator's guide;
       corrections come as pull requests or the Translation correction issue
       form. Languages land one pull request each. A language added as a
@@ -699,6 +700,15 @@ into the release gate. Details stay in the linked dated sections, marked
 Everything found before 2026-09-25 moved to
 [2.0](#found-along-the-way-in-19-moved-to-20) that day.
 
+- [ ] (Found along the way) Sign release archives so the updater can
+      check them against a key built into the game, not only against the
+      checksum GitHub lists next to the file.
+- [ ] (Found along the way) Port a deleted Python data tool into `ff-tools`
+      when a data refresh needs it (October 22 section).
+      [October 22 audit](#october-22-repository-size-and-security-audit)
+- [ ] (Found along the way) Decide whether to rewrite history to drop the
+      retired music files, which take about 440 MB of the repository.
+      [October 22 audit](#october-22-repository-size-and-security-audit)
 - [x] Driving speech audit (owner, 2026-10-03, from a player report): quiet
       and urgent only no longer call out traffic, a line either rung leaves
       out makes no sound, and quiet says cruise, keeper and work zone
@@ -707,6 +717,15 @@ Everything found before 2026-09-25 moved to
       (player report, 2026-10-20): it had been said only past the gore, too
       late to plan for, and a ramp posted 20 rolled a truck. Same number as
       the ramp line; the approach still never asks the truck to slow.
+- [x] Issue sweep, 2026-10-21: with lane keeping on full a tap change waits
+      while the lane is taken (issue 356); the Record line counts safety
+      incidents and crashes (issue 347); UTF-16 playlists load (issue 355).
+- [x] Sound stops for the session after a Bluetooth headset connects or
+      disconnects (issue 483). Kira's cpal stream manager unwrapped the new
+      stream on a device change and gave up when no default device was
+      there at the moment of a disconnect. Hearken now opens the device
+      itself and retries every half second (orinks-games/hearken PR 9,
+      pinned 2026-10-22). Still wants a Bluetooth check by ear on Windows.
 - [ ] A listening pass by the owner at quiet and urgent only, at the wheel.
 - [ ] A listening pass by the owner on a ride-along shift: the co-driver's
       notes, the hazard calls, and how often they speak.
@@ -1655,6 +1674,25 @@ its status or release decision.
       and failure-hook flags went too, and a Linux install no longer needs
       Speech Dispatcher to start (the nightly's Debian, Ubuntu and openSUSE
       boots now run without its client library).
+
+### October 22 the tools are Rust
+
+- [x] Every live Python tool is a command of the `ff-tools` crate, run as
+      `cargo tools <command>`: the release build, AppImage, iOS build and
+      TestFlight signing, release notes and the changelog gate, snapshot
+      pruning, the translation kit, translation extraction and checks, the
+      world index, the radio stream sweeps, sound packing and the playtest
+      watcher. Translation extraction and the world index produce the
+      committed files byte for byte.
+- [x] The Python is deleted: `tools/*.py`, the Python tests, `sound-test/`'s
+      scripts, `pyproject.toml` and `uv.lock`. CI runs `cargo test -p
+      ff-tools` under the same required check names, and the git hooks are
+      plain scripts in `.githooks/`.
+- [ ] (Found along the way) The map, sound and city-data tools (OSM
+      extraction, curve and grade bakes, interchanges, tolls, city services,
+      audio rendering, the imported radio catalog) were deleted, not ported.
+      They are in git history. Port each into `ff-tools` when a data
+      refresh needs it.
 
 ### September 21 the Python sunset
 
@@ -3385,6 +3423,27 @@ the outside temperature.
       describes would let the engine open up too.
 - [ ] A passenger window (Shift Z is taken; it would need another key) if
       players ask.
+
+### October 22 repository size and security audit
+
+- [x] Update unpacking: the zip reader moved to a release that refuses
+      entries and links pointing outside the update folder, and TLS
+      libraries and root certificates were bumped past this month's
+      advisories.
+- [x] The apply script escapes the install folder, so a folder named with
+      a percent sign (Windows) or a dollar sign (Linux, macOS) no longer
+      sends the update somewhere else.
+- [x] The browser only opens http and https addresses; the activation
+      address comes from the site and is checked before it is opened.
+- [x] Third-party GitHub Actions in the release jobs are pinned to commits.
+- [ ] (Found along the way) Release signing: the updater trusts GitHub's
+      HTTPS and the asset checksum GitHub publishes. A signature checked
+      against a public key in the game would survive a compromised release
+      upload.
+- [ ] (Found along the way) History rewrite: about 440 MB of the 800 MB
+      repository is music deleted in August 2026; a filter-repo pass
+      measured 346 MB. It needs a force push and fresh clones, so it waits
+      for the owner.
 
 ## 2.0 planned -- the working week and home
 
