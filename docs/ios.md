@@ -126,12 +126,11 @@ controller settings as the desktop.
 
 ## Building
 
-You need a Mac with Xcode, the pinned Rust toolchain, `uv`, and CMake.
+You need a Mac with Xcode, the pinned Rust toolchain, and CMake.
 
 ```bash
 rustup target add aarch64-apple-ios aarch64-apple-ios-sim
-uv sync --group dev
-uv run python tools/build_ios.py --install --launch   # Simulator
+cargo tools build-ios --install --launch   # Simulator
 ```
 
 ### An IPA for sideloading
@@ -140,7 +139,7 @@ To build for a real iPhone or iPad and produce an IPA without supplying an
 Apple signing certificate or provisioning profile:
 
 ```bash
-uv run python tools/build_ios.py --sideload
+cargo tools build-ios --sideload
 ```
 
 The output is `build/ios/FreightFate.ipa`, containing
@@ -148,7 +147,7 @@ The output is `build/ios/FreightFate.ipa`, containing
 [Sideloadly](https://sideloadly.io/), which signs and installs it using your
 Apple account. The builder applies only an ad-hoc signature; the IPA needs
 to be re-signed before a device can run it. Signing happens in the
-sideloading tool, so the build script does not need your Apple credentials.
+sideloading tool, so the build does not need your Apple credentials.
 
 This option selects the device target automatically. A Simulator `.app`
 cannot be made into a device build just by zipping it or changing its
@@ -162,7 +161,7 @@ For a signed device IPA, pass a signing identity and a provisioning profile
 for the bundle identifier `net.orinks.freightfate`:
 
 ```bash
-uv run python tools/build_ios.py --device --ipa \
+cargo tools build-ios --device --ipa \
     --sign-identity "Apple Development: ..." \
     --provisioning-profile path/to/profile.mobileprovision
 ```
@@ -174,7 +173,7 @@ direct sideloading. See Apple's
 [registered-device distribution guide](https://developer.apple.com/documentation/xcode/distributing-your-app-to-registered-devices).
 Omit `--ipa` if you only need the signed `.app` bundle.
 
-The script builds the Rust game for the iOS target, bakes the world data,
+The command builds the Rust game for the iOS target, bakes the world data,
 stages the sound and music packs, writes `Info.plist`, and signs `build/ios/<sdk>/FreightFate.app`.
 
 Prism compiles its VoiceOver/AVSpeech backend from source for iOS; the

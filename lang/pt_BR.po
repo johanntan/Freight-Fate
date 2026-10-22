@@ -6550,11 +6550,11 @@ msgstr "via pública sem nome"
 msgid "a side street"
 msgstr "uma rua lateral"
 
-msgid "right"
-msgstr "direita"
-
 msgid "ahead"
 msgstr "em frente"
+
+msgid "right"
+msgstr "direita"
 
 #. placeholders: {highway}
 msgid "Start on {highway}."
@@ -9438,9 +9438,18 @@ msgstr "Histórico: CDL {verb}, faltam {left}. Libera {clears_text}."
 msgid "Record: clean."
 msgstr "Histórico: limpo."
 
-#. placeholders: {count_word}, {noun}
-msgid "{count_word} {noun} in the last year"
-msgstr "{count_word} {noun} no último ano"
+msgid "safety incident"
+msgstr ""
+
+msgid "safety incidents"
+msgstr ""
+
+msgid "crashes"
+msgstr "acidentes"
+
+#. placeholders: {join}, {last}
+msgid "{join} and {last}"
+msgstr "{join} e {last}"
 
 msgid "major offense"
 msgstr "infração gravíssima"
@@ -9872,10 +9881,6 @@ msgstr "CDL padrão"
 #. placeholders: {endorsement_label}
 msgid "the {endorsement_label}"
 msgstr "o {endorsement_label}"
-
-#. placeholders: {join}, {last}
-msgid "{join} and {last}"
-msgstr "{join} e {last}"
 
 #. placeholders: {f}
 msgid "{f} driving hours"
@@ -12900,18 +12905,6 @@ msgstr "A rota 1 evita {reason} e economiza {minutes_words}."
 msgid "Construction: {spots_text}."
 msgstr "Obras: {spots_text}."
 
-msgid "autumn"
-msgstr "outono"
-
-msgid "spring"
-msgstr "primavera"
-
-msgid "summer"
-msgstr "verão"
-
-msgid "winter"
-msgstr "inverno"
-
 msgid "Monday"
 msgstr "segunda-feira"
 
@@ -12932,6 +12925,18 @@ msgstr "sábado"
 
 msgid "Sunday"
 msgstr "domingo"
+
+msgid "winter"
+msgstr "inverno"
+
+msgid "spring"
+msgstr "primavera"
+
+msgid "summer"
+msgstr "verão"
+
+msgid "autumn"
+msgstr "outono"
 
 msgid "January"
 msgstr "janeiro"
@@ -14546,19 +14551,12 @@ msgstr "O motor que pende"
 
 msgid ""
 "Not a sound of its own: it is the engine you are always hearing, leaning to "
-"one side. Steer toward the lean, unless you have set the Steering guide row "
-"to steer away from it. It leans the way the wheel should go, so it points "
-"into a bend before you reach it and away from the edge you are drifting "
-"toward. This is the one cue here you follow rather than avoid, and it eases "
-"back to the middle as you make the turn or come straight."
+"one side. Steer toward the engine, unless you have set the Steering guide "
+"row to steer away from it. It leans the way the wheel should go, so it "
+"points into a bend before you reach it and away from the edge you are "
+"drifting toward. This is the one cue here you follow rather than avoid, and "
+"it eases back to the middle as you make the turn or come straight."
 msgstr ""
-"Não é um som próprio: é o motor que você está sempre ouvindo, pendendo para "
-"um lado. Vire para o lado em que ele pende, a não ser que você tenha "
-"ajustado a linha Guia de direção para virar para o lado oposto. Ele pende "
-"para onde o volante deve ir, então aponta para dentro de uma curva antes de "
-"você chegar nela e para longe da borda para onde você está derivando. Este "
-"é o único aviso daqui que você segue em vez de evitar, e ele volta aos "
-"poucos para o centro conforme você faz a curva ou endireita."
 
 msgid ""
 "Every bend and street corner, in every lane keeping mode. It also leans to "
@@ -15558,9 +15556,19 @@ msgstr " na {exit_label}"
 msgid "{planned_prefix}{typed_name}{exit_part} in {distance}."
 msgstr "{planned_prefix}{typed_name}{exit_part} em {distance}."
 
+msgid "Fuel."
+msgstr ""
+
+msgid "No fuel."
+msgstr ""
+
 #. placeholders: {exit_hint}
 msgid "Press {exit_hint} to signal for the exit."
 msgstr "Aperte {exit_hint} para dar seta para a saída."
+
+#. placeholders: {terse}
+msgid "{terse} No fuel."
+msgstr ""
 
 msgid "estimated "
 msgstr "estimado em "
@@ -18316,6 +18324,12 @@ msgid ""
 msgstr ""
 "A inspeção da rota depois da coleta cobre descanso, combustível, pedágio, "
 "clima e restrições."
+
+#. placeholders: {hours}
+msgid ""
+"Trip hours: about {hours} driving hours, with the co-driver taking turns "
+"instead of 10-hour sleeps."
+msgstr ""
 
 #. placeholders: {hours}
 msgid "Trip hours: about {hours} driving hours."
@@ -22868,6 +22882,10 @@ msgstr ""
 "Os gestos podem ser mudados em Configurações, Jogabilidade, Controles, "
 "Gestos de toque."
 
+#. placeholders: {name}
+msgid "{name} can take the wheel from the pause menu."
+msgstr ""
+
 msgid "for the corner"
 msgstr "pela esquina"
 
@@ -25320,6 +25338,13 @@ msgstr ""
 "Autonomia de cerca de {range_text}, não chega ao destino, e não há posto de "
 "combustível à frente nesta rota."
 
+#. placeholders: {name}, {distance_text}
+msgid "Next fuel: {name}, {distance_text}."
+msgstr ""
+
+msgid "No fuel stop before the destination."
+msgstr ""
+
 msgid "on the carrier account, and dispatch noted the service call"
 msgstr "na conta da transportadora, e a central anotou o chamado"
 
@@ -26199,6 +26224,10 @@ msgstr "Saída do destino"
 #. placeholders: {name}
 msgid "Exit for {name}"
 msgstr "Saída para {name}"
+
+#. placeholders: {speed_value}
+msgid " Exit speed {speed_value}."
+msgstr " Velocidade da saída {speed_value}."
 
 msgid " Traffic is tight."
 msgstr " O trânsito está apertado."
@@ -30060,6 +30089,9 @@ msgstr "Você já está descansado. {preview}"
 msgid "Inspection station."
 msgstr "Posto de fiscalização."
 
+msgid "No fuel here."
+msgstr ""
+
 #. placeholders: {summary}
 msgid "Loyalty program: {summary}"
 msgstr "Programa de fidelidade: {summary}"
@@ -31734,6 +31766,45 @@ msgstr ""
 msgid "{name} has parked and hands you the wheel. Your 10-hour rest is in."
 msgstr ""
 
+#. placeholders: {name}
+#. one sentence of a longer line
+msgid "{name} parked when their hours ran out, and you slept on."
+msgstr ""
+
+#. placeholders: {name}
+msgid ""
+"{name} parked when their hours ran out, and you slept on. Your 10-hour rest "
+"is in."
+msgstr ""
+
+#. placeholders: {name}
+#. one sentence of a longer line
+msgid ""
+"{name} pulled onto the shoulder when their hours ran out, with no lot in "
+"reach, and you slept on there."
+msgstr ""
+
+#. placeholders: {name}
+msgid ""
+"{name} pulled onto the shoulder when their hours ran out, with no lot in "
+"reach, and you slept on there. Your 10-hour rest is in."
+msgstr ""
+
+#. one sentence of a longer line
+msgid "Their hours run out before the next place to park."
+msgstr ""
+
+#. placeholders: {name}
+#. one sentence of a longer line
+msgid "{name} has parked for the end of their shift."
+msgstr ""
+
+#. placeholders: {name}
+msgid ""
+"{name} has parked for the end of their shift. Their hours run out before "
+"the next place to park."
+msgstr ""
+
 #. one sentence of a longer line
 msgid "The truck took damage."
 msgstr "O caminhão sofreu dano."
@@ -31874,6 +31945,30 @@ msgstr ""
 "{pay} Essas milhas rendem metade da experiência para você. Enquanto {name} "
 "dirige, você fica registrado na cabine-leito."
 
+#. placeholders: {name}, {left}
+msgid ""
+"{name} has {left} of driving left, short of your 10-hour rest, so they park "
+"and you finish it there."
+msgstr ""
+
+#. one sentence of a longer line
+msgid "Shoulder rest is poor and risks a ticket or minor damage."
+msgstr ""
+
+#. placeholders: {name}, {left}
+#. one sentence of a longer line
+msgid ""
+"{name} has {left} of driving left, short of your 10-hour rest, and no truck "
+"lot in reach, so they stop on the shoulder and you finish it there."
+msgstr ""
+
+#. placeholders: {name}, {left}
+msgid ""
+"{name} has {left} of driving left, short of your 10-hour rest, and no truck "
+"lot in reach, so they stop on the shoulder and you finish it there. "
+"Shoulder rest is poor and risks a ticket or minor damage."
+msgstr ""
+
 #. placeholders: {name}
 msgid ""
 "{name} can drive from here, or take over later from the pause menu, while "
@@ -31960,14 +32055,17 @@ msgid ""
 "{name} drove on after a collision with {animal}. Damage {damage} percent."
 msgstr ""
 
-msgid "shift"
-msgstr "turno"
-
 msgid "rested"
 msgstr ""
 
 msgid "Refuel"
 msgstr "Abastecer"
+
+msgid "last lot"
+msgstr ""
+
+msgid "shift"
+msgstr "turno"
 
 msgid "stalled"
 msgstr "parado"
@@ -32060,6 +32158,13 @@ msgstr ""
 #. placeholders: {name}, {f}
 msgid "Team load: {name} drove {f} of the miles"
 msgstr "Carga em dupla: {name} dirigiu {f} das milhas"
+
+#. placeholders: {name}
+msgid "{name} took a 30-minute break on the shoulder."
+msgstr ""
+
+msgid "slept on"
+msgstr ""
 
 #. placeholders: {name}, {gallons}, {place}
 msgid ""
@@ -33459,34 +33564,6 @@ msgid ""
 msgstr ""
 "{sentence_start}, das {clock_text} às {clock_text2}, {duration_text}, "
 "{location}{note}."
-
-msgid "Logbook has no recent duty entries yet."
-msgstr "O diário de bordo ainda não tem registros de serviço recentes."
-
-#. placeholders: {entry_line}
-#. one sentence of a longer line
-msgid "Latest entry: {entry_line}"
-msgstr "Último registro: {entry_line}"
-
-#. placeholders: {duration_text}, {duration_text2}, {duration_text3}, {duration_text4}
-#. one sentence of a longer line
-msgid ""
-"Logbook shows driving {duration_text}, on duty not driving "
-"{duration_text2}, off duty {duration_text3}, sleeper berth {duration_text4}."
-msgstr ""
-"O diário de bordo mostra dirigindo {duration_text}, em serviço sem dirigir "
-"{duration_text2}, fora de serviço {duration_text3}, cabine-leito "
-"{duration_text4}."
-
-#. placeholders: {duration_text}, {duration_text2}, {duration_text3}, {duration_text4}, {entry_line}
-msgid ""
-"Logbook shows driving {duration_text}, on duty not driving "
-"{duration_text2}, off duty {duration_text3}, sleeper berth "
-"{duration_text4}. Latest entry: {entry_line}"
-msgstr ""
-"O diário de bordo mostra dirigindo {duration_text}, em serviço sem dirigir "
-"{duration_text2}, fora de serviço {duration_text3}, cabine-leito "
-"{duration_text4}. Último registro: {entry_line}"
 
 msgid ""
 "Use up and down arrows to review logbook lines. Enter repeats the current "
@@ -35559,24 +35636,18 @@ msgstr ""
 msgid "Steering guide: {else}"
 msgstr "Guia de direção: {else}"
 
-msgid "steer away from the lean"
-msgstr "vire para o lado oposto à inclinação"
+msgid "steer away from the engine"
+msgstr ""
 
-msgid "steer toward the lean"
-msgstr "vire para o lado da inclinação"
+msgid "steer toward the engine"
+msgstr ""
 
 msgid ""
-"Which way to steer when the engine leans. Toward the lean is the default: "
-"the engine pans the way you have to turn, and comes back to the middle as "
-"you turn. Away from the lean flips it, for drivers who learned the other "
-"habit in audio racing games. Everything else about the guide is the same "
-"either way."
+"Which way to steer when the engine sound moves to one side. Toward the "
+"engine is the default: the engine moves to the side you have to turn to, "
+"then back to the middle as you turn. Away from the engine flips it, for "
+"drivers used to that from audio racing games."
 msgstr ""
-"Para que lado virar quando o motor se inclina. Para o lado da inclinação é "
-"o padrão: o motor vai para o lado para onde você precisa virar e volta para "
-"o meio conforme você vira. Para o lado oposto inverte isso, para motoristas "
-"que aprenderam o outro hábito em jogos de corrida em áudio. Todo o resto do "
-"guia é igual de qualquer jeito."
 
 #. placeholders: {else}
 msgid "Lane guide sound: {else}"
@@ -39505,9 +39576,6 @@ msgstr "ordem de impedimento de rodar"
 msgid "out-of-service orders"
 msgstr "ordens de impedimento de rodar"
 
-msgid "crashes"
-msgstr "acidentes"
-
 msgid "cargo claim"
 msgstr "reclamação de carga"
 
@@ -41481,6 +41549,67 @@ msgstr "fecha parêntese"
 #. placeholders: {ch}
 msgid "cap {ch}"
 msgstr "{ch} maiúsculo"
+
+#~ msgid "Logbook has no recent duty entries yet."
+#~ msgstr "O diário de bordo ainda não tem registros de serviço recentes."
+
+#~ msgid "Latest entry: {entry_line}"
+#~ msgstr "Último registro: {entry_line}"
+
+#~ msgid ""
+#~ "Logbook shows driving {duration_text}, on duty not driving "
+#~ "{duration_text2}, off duty {duration_text3}, sleeper berth {duration_text4}."
+#~ msgstr ""
+#~ "O diário de bordo mostra dirigindo {duration_text}, em serviço sem dirigir "
+#~ "{duration_text2}, fora de serviço {duration_text3}, cabine-leito "
+#~ "{duration_text4}."
+
+#~ msgid ""
+#~ "Logbook shows driving {duration_text}, on duty not driving "
+#~ "{duration_text2}, off duty {duration_text3}, sleeper berth "
+#~ "{duration_text4}. Latest entry: {entry_line}"
+#~ msgstr ""
+#~ "O diário de bordo mostra dirigindo {duration_text}, em serviço sem dirigir "
+#~ "{duration_text2}, fora de serviço {duration_text3}, cabine-leito "
+#~ "{duration_text4}. Último registro: {entry_line}"
+
+#~ msgid "{count_word} {noun} in the last year"
+#~ msgstr "{count_word} {noun} no último ano"
+
+#~ msgid ""
+#~ "Not a sound of its own: it is the engine you are always hearing, leaning to "
+#~ "one side. Steer toward the lean, unless you have set the Steering guide row "
+#~ "to steer away from it. It leans the way the wheel should go, so it points "
+#~ "into a bend before you reach it and away from the edge you are drifting "
+#~ "toward. This is the one cue here you follow rather than avoid, and it eases "
+#~ "back to the middle as you make the turn or come straight."
+#~ msgstr ""
+#~ "Não é um som próprio: é o motor que você está sempre ouvindo, pendendo para "
+#~ "um lado. Vire para o lado em que ele pende, a não ser que você tenha "
+#~ "ajustado a linha Guia de direção para virar para o lado oposto. Ele pende "
+#~ "para onde o volante deve ir, então aponta para dentro de uma curva antes de "
+#~ "você chegar nela e para longe da borda para onde você está derivando. Este "
+#~ "é o único aviso daqui que você segue em vez de evitar, e ele volta aos "
+#~ "poucos para o centro conforme você faz a curva ou endireita."
+
+#~ msgid "steer away from the lean"
+#~ msgstr "vire para o lado oposto à inclinação"
+
+#~ msgid "steer toward the lean"
+#~ msgstr "vire para o lado da inclinação"
+
+#~ msgid ""
+#~ "Which way to steer when the engine leans. Toward the lean is the default: "
+#~ "the engine pans the way you have to turn, and comes back to the middle as "
+#~ "you turn. Away from the lean flips it, for drivers who learned the other "
+#~ "habit in audio racing games. Everything else about the guide is the same "
+#~ "either way."
+#~ msgstr ""
+#~ "Para que lado virar quando o motor se inclina. Para o lado da inclinação é "
+#~ "o padrão: o motor vai para o lado para onde você precisa virar e volta para "
+#~ "o meio conforme você vira. Para o lado oposto inverte isso, para motoristas "
+#~ "que aprenderam o outro hábito em jogos de corrida em áudio. Todo o resto do "
+#~ "guia é igual de qualquer jeito."
 
 #~ msgid ", needs you back in {duration_text}"
 #~ msgstr ", precisa de você de volta em {duration_text}"

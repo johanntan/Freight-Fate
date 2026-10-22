@@ -5611,11 +5611,11 @@ msgstr "名前のない公道"
 msgid "a side street"
 msgstr "脇道"
 
-msgid "right"
-msgstr "右"
-
 msgid "ahead"
 msgstr "前方"
+
+msgid "right"
+msgstr "右"
 
 #. placeholders: {highway}
 msgid "Start on {highway}."
@@ -8176,9 +8176,18 @@ msgstr "記録：CDL{verb}、残り{left}。解除は{clears_text}です。"
 msgid "Record: clean."
 msgstr "記録：問題なし。"
 
-#. placeholders: {count_word}, {noun}
-msgid "{count_word} {noun} in the last year"
-msgstr "過去1年間に{noun}{count_word}件"
+msgid "safety incident"
+msgstr ""
+
+msgid "safety incidents"
+msgstr ""
+
+msgid "crashes"
+msgstr "事故"
+
+#. placeholders: {join}, {last}
+msgid "{join} and {last}"
+msgstr "{join}と{last}"
 
 msgid "major offense"
 msgstr "一発取消違反"
@@ -8594,10 +8603,6 @@ msgstr "標準のCDL"
 #. placeholders: {endorsement_label}
 msgid "the {endorsement_label}"
 msgstr "{endorsement_label}"
-
-#. placeholders: {join}, {last}
-msgid "{join} and {last}"
-msgstr "{join}と{last}"
 
 #. placeholders: {f}
 msgid "{f} driving hours"
@@ -11414,18 +11419,6 @@ msgstr "ルート1は{reason}を避け、{minutes_words}短縮になります。
 msgid "Construction: {spots_text}."
 msgstr "工事：{spots_text}。"
 
-msgid "autumn"
-msgstr "秋"
-
-msgid "spring"
-msgstr "春"
-
-msgid "summer"
-msgstr "夏"
-
-msgid "winter"
-msgstr "冬"
-
 msgid "Monday"
 msgstr "月曜日"
 
@@ -11446,6 +11439,18 @@ msgstr "土曜日"
 
 msgid "Sunday"
 msgstr "日曜日"
+
+msgid "winter"
+msgstr "冬"
+
+msgid "spring"
+msgstr "春"
+
+msgid "summer"
+msgstr "夏"
+
+msgid "autumn"
+msgstr "秋"
 
 msgid "January"
 msgstr "1月"
@@ -13023,15 +13028,12 @@ msgstr "エンジン音の傾き"
 
 msgid ""
 "Not a sound of its own: it is the engine you are always hearing, leaning to "
-"one side. Steer toward the lean, unless you have set the Steering guide row "
-"to steer away from it. It leans the way the wheel should go, so it points "
-"into a bend before you reach it and away from the edge you are drifting "
-"toward. This is the one cue here you follow rather than avoid, and it eases "
-"back to the middle as you make the turn or come straight."
+"one side. Steer toward the engine, unless you have set the Steering guide "
+"row to steer away from it. It leans the way the wheel should go, so it "
+"points into a bend before you reach it and away from the edge you are "
+"drifting toward. This is the one cue here you follow rather than avoid, and "
+"it eases back to the middle as you make the turn or come straight."
 msgstr ""
-"独自の音ではありません。いつも聞こえているエンジン音が片側に傾くものです。操舵ガイドの設定で逆向きにしていなければ、傾いた方へハンドルを切ってください。"
-"ハンドルを切るべき方向に傾くので、カーブに着く前にカーブの方を指し、寄っていく路端からは離れる方を指します。ここで避けるのではなく従う合図はこれだけで、"
-"曲がり終えたりまっすぐに戻ったりすると中央に戻っていきます。"
 
 msgid ""
 "Every bend and street corner, in every lane keeping mode. It also leans to "
@@ -13892,9 +13894,19 @@ msgstr " 、{exit_label}"
 msgid "{planned_prefix}{typed_name}{exit_part} in {distance}."
 msgstr "{distance}先、{planned_prefix}{typed_name}{exit_part}。"
 
+msgid "Fuel."
+msgstr ""
+
+msgid "No fuel."
+msgstr ""
+
 #. placeholders: {exit_hint}
 msgid "Press {exit_hint} to signal for the exit."
 msgstr "{exit_hint}を押すと、出口へのウインカーを出します。"
+
+#. placeholders: {terse}
+msgid "{terse} No fuel."
+msgstr ""
 
 msgid "estimated "
 msgstr "推定 "
@@ -16444,6 +16456,12 @@ msgid ""
 "Route inspection after pickup covers rest, fuel, toll, weather, and "
 "restrictions."
 msgstr "積み込み後のルートの確認で、休息、燃料、通行料、天気、規制を扱います。"
+
+#. placeholders: {hours}
+msgid ""
+"Trip hours: about {hours} driving hours, with the co-driver taking turns "
+"instead of 10-hour sleeps."
+msgstr ""
 
 #. placeholders: {hours}
 msgid "Trip hours: about {hours} driving hours."
@@ -20515,6 +20533,10 @@ msgid ""
 "Gestures can be moved in Settings, Gameplay, Controls, Touch gestures."
 msgstr "ジェスチャーは、設定のゲームプレイ、操作、タッチジェスチャーで変えられます。"
 
+#. placeholders: {name}
+msgid "{name} can take the wheel from the pause menu."
+msgstr ""
+
 msgid "for the corner"
 msgstr "角のため"
 
@@ -22780,6 +22802,13 @@ msgid ""
 "ahead on this route."
 msgstr "航続距離は約{range_text}で、目的地まで届きません。このルートの先に給油地点はありません。"
 
+#. placeholders: {name}, {distance_text}
+msgid "Next fuel: {name}, {distance_text}."
+msgstr ""
+
+msgid "No fuel stop before the destination."
+msgstr ""
+
 msgid "on the carrier account, and dispatch noted the service call"
 msgstr "配車係が出動を記録して、運送会社の負担で"
 
@@ -23619,6 +23648,10 @@ msgstr "目的地の出口"
 #. placeholders: {name}
 msgid "Exit for {name}"
 msgstr "{name}方面の出口"
+
+#. placeholders: {speed_value}
+msgid " Exit speed {speed_value}."
+msgstr " 出口速度{speed_value}。"
 
 msgid " Traffic is tight."
 msgstr " 車が詰まっています。"
@@ -27193,6 +27226,9 @@ msgstr "もう十分休んでいます。{preview}"
 msgid "Inspection station."
 msgstr "検査所です。"
 
+msgid "No fuel here."
+msgstr ""
+
 #. placeholders: {summary}
 msgid "Loyalty program: {summary}"
 msgstr "ポイントプログラム：{summary}"
@@ -28712,6 +28748,45 @@ msgstr ""
 msgid "{name} has parked and hands you the wheel. Your 10-hour rest is in."
 msgstr ""
 
+#. placeholders: {name}
+#. one sentence of a longer line
+msgid "{name} parked when their hours ran out, and you slept on."
+msgstr ""
+
+#. placeholders: {name}
+msgid ""
+"{name} parked when their hours ran out, and you slept on. Your 10-hour rest "
+"is in."
+msgstr ""
+
+#. placeholders: {name}
+#. one sentence of a longer line
+msgid ""
+"{name} pulled onto the shoulder when their hours ran out, with no lot in "
+"reach, and you slept on there."
+msgstr ""
+
+#. placeholders: {name}
+msgid ""
+"{name} pulled onto the shoulder when their hours ran out, with no lot in "
+"reach, and you slept on there. Your 10-hour rest is in."
+msgstr ""
+
+#. one sentence of a longer line
+msgid "Their hours run out before the next place to park."
+msgstr ""
+
+#. placeholders: {name}
+#. one sentence of a longer line
+msgid "{name} has parked for the end of their shift."
+msgstr ""
+
+#. placeholders: {name}
+msgid ""
+"{name} has parked for the end of their shift. Their hours run out before "
+"the next place to park."
+msgstr ""
+
 #. one sentence of a longer line
 msgid "The truck took damage."
 msgstr "トラックが損傷しました。"
@@ -28849,6 +28924,30 @@ msgid ""
 "are logged in the sleeper berth."
 msgstr "{pay}その距離で得られる経験値は半分です。{name}が運転している間、あなたは寝台として記録されます。"
 
+#. placeholders: {name}, {left}
+msgid ""
+"{name} has {left} of driving left, short of your 10-hour rest, so they park "
+"and you finish it there."
+msgstr ""
+
+#. one sentence of a longer line
+msgid "Shoulder rest is poor and risks a ticket or minor damage."
+msgstr ""
+
+#. placeholders: {name}, {left}
+#. one sentence of a longer line
+msgid ""
+"{name} has {left} of driving left, short of your 10-hour rest, and no truck "
+"lot in reach, so they stop on the shoulder and you finish it there."
+msgstr ""
+
+#. placeholders: {name}, {left}
+msgid ""
+"{name} has {left} of driving left, short of your 10-hour rest, and no truck "
+"lot in reach, so they stop on the shoulder and you finish it there. "
+"Shoulder rest is poor and risks a ticket or minor damage."
+msgstr ""
+
 #. placeholders: {name}
 msgid ""
 "{name} can drive from here, or take over later from the pause menu, while "
@@ -28935,14 +29034,17 @@ msgid ""
 "{name} drove on after a collision with {animal}. Damage {damage} percent."
 msgstr ""
 
-msgid "shift"
-msgstr "交代"
-
 msgid "rested"
 msgstr ""
 
 msgid "Refuel"
 msgstr "給油"
+
+msgid "last lot"
+msgstr ""
+
+msgid "shift"
+msgstr "交代"
 
 msgid "stalled"
 msgstr "エンスト"
@@ -29033,6 +29135,13 @@ msgstr "{name}がこの積荷の{miles}を運転しました。{share}は{groupe
 #. placeholders: {name}, {f}
 msgid "Team load: {name} drove {f} of the miles"
 msgstr "チームの積荷：{name}が距離の{f}を運転"
+
+#. placeholders: {name}
+msgid "{name} took a 30-minute break on the shoulder."
+msgstr ""
+
+msgid "slept on"
+msgstr ""
 
 #. placeholders: {name}, {gallons}, {place}
 msgid ""
@@ -30314,32 +30423,6 @@ msgid ""
 msgstr ""
 "{sentence_start}、{clock_text}から{clock_text2}、{duration_text}、{location}{note"
 "}。"
-
-msgid "Logbook has no recent duty entries yet."
-msgstr "運転日誌に最近の勤務記録はまだありません。"
-
-#. placeholders: {entry_line}
-#. one sentence of a longer line
-msgid "Latest entry: {entry_line}"
-msgstr "最新の記録：{entry_line}"
-
-#. placeholders: {duration_text}, {duration_text2}, {duration_text3}, {duration_text4}
-#. one sentence of a longer line
-msgid ""
-"Logbook shows driving {duration_text}, on duty not driving "
-"{duration_text2}, off duty {duration_text3}, sleeper berth {duration_text4}."
-msgstr ""
-"運転日誌：運転{duration_text}、運転以外の勤務{duration_text2}、非勤務{duration_text3}、スリーパー{dur"
-"ation_text4}。"
-
-#. placeholders: {duration_text}, {duration_text2}, {duration_text3}, {duration_text4}, {entry_line}
-msgid ""
-"Logbook shows driving {duration_text}, on duty not driving "
-"{duration_text2}, off duty {duration_text3}, sleeper berth "
-"{duration_text4}. Latest entry: {entry_line}"
-msgstr ""
-"運転日誌：運転{duration_text}、運転以外の勤務{duration_text2}、非勤務{duration_text3}、スリーパー{dur"
-"ation_text4}。最新の記録：{entry_line}"
 
 msgid ""
 "Use up and down arrows to review logbook lines. Enter repeats the current "
@@ -32174,21 +32257,18 @@ msgstr ""
 msgid "Steering guide: {else}"
 msgstr "操舵ガイド：{else}"
 
-msgid "steer away from the lean"
-msgstr "傾きの反対側へ切る"
+msgid "steer away from the engine"
+msgstr ""
 
-msgid "steer toward the lean"
-msgstr "傾きの方へ切る"
+msgid "steer toward the engine"
+msgstr ""
 
 msgid ""
-"Which way to steer when the engine leans. Toward the lean is the default: "
-"the engine pans the way you have to turn, and comes back to the middle as "
-"you turn. Away from the lean flips it, for drivers who learned the other "
-"habit in audio racing games. Everything else about the guide is the same "
-"either way."
+"Which way to steer when the engine sound moves to one side. Toward the "
+"engine is the default: the engine moves to the side you have to turn to, "
+"then back to the middle as you turn. Away from the engine flips it, for "
+"drivers used to that from audio racing games."
 msgstr ""
-"エンジン音が傾いたとき、どちらへハンドルを切るかです。既定は傾きの方へ切る設定で、エンジン音は曲がるべき方向に寄り、曲がると中央に戻ります。反対側へ切る"
-"設定ではこれが逆になり、オーディオのレースゲームで逆の癖を身につけたドライバー向けです。ガイドのそれ以外の点は、どちらでも同じです。"
 
 #. placeholders: {else}
 msgid "Lane guide sound: {else}"
@@ -35547,9 +35627,6 @@ msgstr "走行禁止命令"
 msgid "out-of-service orders"
 msgstr "走行禁止命令"
 
-msgid "crashes"
-msgstr "事故"
-
 msgid "cargo claim"
 msgstr "積荷の損害賠償請求"
 
@@ -37398,6 +37475,58 @@ msgstr "右かっこ"
 #. placeholders: {ch}
 msgid "cap {ch}"
 msgstr "大文字の{ch}"
+
+#~ msgid "Logbook has no recent duty entries yet."
+#~ msgstr "運転日誌に最近の勤務記録はまだありません。"
+
+#~ msgid "Latest entry: {entry_line}"
+#~ msgstr "最新の記録：{entry_line}"
+
+#~ msgid ""
+#~ "Logbook shows driving {duration_text}, on duty not driving "
+#~ "{duration_text2}, off duty {duration_text3}, sleeper berth {duration_text4}."
+#~ msgstr ""
+#~ "運転日誌：運転{duration_text}、運転以外の勤務{duration_text2}、非勤務{duration_text3}、スリーパー{dur"
+#~ "ation_text4}。"
+
+#~ msgid ""
+#~ "Logbook shows driving {duration_text}, on duty not driving "
+#~ "{duration_text2}, off duty {duration_text3}, sleeper berth "
+#~ "{duration_text4}. Latest entry: {entry_line}"
+#~ msgstr ""
+#~ "運転日誌：運転{duration_text}、運転以外の勤務{duration_text2}、非勤務{duration_text3}、スリーパー{dur"
+#~ "ation_text4}。最新の記録：{entry_line}"
+
+#~ msgid "{count_word} {noun} in the last year"
+#~ msgstr "過去1年間に{noun}{count_word}件"
+
+#~ msgid ""
+#~ "Not a sound of its own: it is the engine you are always hearing, leaning to "
+#~ "one side. Steer toward the lean, unless you have set the Steering guide row "
+#~ "to steer away from it. It leans the way the wheel should go, so it points "
+#~ "into a bend before you reach it and away from the edge you are drifting "
+#~ "toward. This is the one cue here you follow rather than avoid, and it eases "
+#~ "back to the middle as you make the turn or come straight."
+#~ msgstr ""
+#~ "独自の音ではありません。いつも聞こえているエンジン音が片側に傾くものです。操舵ガイドの設定で逆向きにしていなければ、傾いた方へハンドルを切ってください。"
+#~ "ハンドルを切るべき方向に傾くので、カーブに着く前にカーブの方を指し、寄っていく路端からは離れる方を指します。ここで避けるのではなく従う合図はこれだけで、"
+#~ "曲がり終えたりまっすぐに戻ったりすると中央に戻っていきます。"
+
+#~ msgid "steer away from the lean"
+#~ msgstr "傾きの反対側へ切る"
+
+#~ msgid "steer toward the lean"
+#~ msgstr "傾きの方へ切る"
+
+#~ msgid ""
+#~ "Which way to steer when the engine leans. Toward the lean is the default: "
+#~ "the engine pans the way you have to turn, and comes back to the middle as "
+#~ "you turn. Away from the lean flips it, for drivers who learned the other "
+#~ "habit in audio racing games. Everything else about the guide is the same "
+#~ "either way."
+#~ msgstr ""
+#~ "エンジン音が傾いたとき、どちらへハンドルを切るかです。既定は傾きの方へ切る設定で、エンジン音は曲がるべき方向に寄り、曲がると中央に戻ります。反対側へ切る"
+#~ "設定ではこれが逆になり、オーディオのレースゲームで逆の癖を身につけたドライバー向けです。ガイドのそれ以外の点は、どちらでも同じです。"
 
 #~ msgid ", needs you back in {duration_text}"
 #~ msgstr "、{duration_text}後に交代"

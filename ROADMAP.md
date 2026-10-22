@@ -23,7 +23,7 @@
 > flight on the `feat/career-1.9` branch -- driving realism between the exits
 > (discrete lanes, ramp terminals, congestion, real surface streets) plus the
 > highway-spider world expansion, roadside narration, and real time zones.
-> `pyproject` is set to 1.9.0 so developer snapshots report it; the stable tag
+> The package version is set to 1.9.0 so developer snapshots report it; the stable tag
 > follows at release. Keep this file current: when a feature lands on the 1.9
 > line, check it off here in the same change.
 
@@ -45,7 +45,8 @@ bookmarks usable.
       where it leaves for the speech channels, from gettext PO files in
       `lang/` matched as templates, so the code stays English. Settings,
       Speech, Language picks the language (Automatic follows the system on
-      a fresh install; an existing settings file keeps English). Radio and
+      a fresh install; an existing settings file keeps English). Turkish
+      joined the nine on 2026-10-22 (issue 397). Radio and
       recordings stay English. `lang/README.md` is the translator's guide;
       corrections come as pull requests or the Translation correction issue
       form. Languages land one pull request each. A language added as a
@@ -91,6 +92,38 @@ bookmarks usable.
       summary is his to do. Career stats gains a Co-drivers list once a
       career has teamed (2026-10-19): each classmate's loads together, the
       owner-operator's hire, and their bio, read only when opened.
+      A team load's job details and route plan no longer name the solo
+      driver's ten-hour sleeps, and the stop planning hint and the last
+      sleep stop warning give way to the co-driver while one is rested
+      (player report, 2026-10-20: a 2,300-mile team load planned around
+      sleeps ran late). Measured the same day on Portland to Memphis, 2,353
+      miles with the shortest deadline the board gives it (53.8 hours): the
+      co-driver taking every shift, traffic, hazards and inspections on,
+      delivered in 45.0 hours.
+      A co-driver whose hours run out before the player's rest is in ends
+      the shift at the last lot those hours reach and hands back parked,
+      instead of at highway speed (player report, 2026-10-20: Lou handed
+      back on I-29 with the nearest lot 76 miles on, and a log check put the
+      player out of service). The truck then stays parked while the player
+      sleeps out the rest of their 10 hours, so the co-driver never wakes
+      the player short of their rest for want of hours (owner rule,
+      2026-10-21, after Melissa woke with hours of her own, drove three
+      more and was over the 14-hour window at the yard). The handover rows'
+      help gives the co-driver's driving time when it falls short of the
+      player's 10-hour rest and says they will park for it.
+      With no lot in reach at all, the co-driver stops on the shoulder and
+      the rest is slept out there on the terms of an emergency shoulder
+      sleep (2026-10-22, after an agent drive on I-5 found no
+      truck lot between Corning and Ripon and was woken with 8.7 hours of
+      the rest owed); the handover help says so first. A co-driver's
+      30-minute break that comes due with no stop in reach is taken on the
+      shoulder too, and they drive on (the same drive was woken for Dan's
+      break in the Shasta mountains with 2.2 hours of the rest owed).
+      The truck stops in its lane for both: there is still no pull-over
+      onto the shoulder itself (see the hand-back item below).
+      Still waking the player before the rest is in: what only the driver
+      can decide (damage, an empty tank, a trooper, a full lot at the end
+      of the shift, chains, the money for fuel) and the receiver's gate.
 - [x] Co-driver and assist realism (owner, 2026-10-19): lane keeping on
       full goes around anything sitting in the lane (debris, a car on the
       shoulder, a closure) when a lane is open, and holds
@@ -684,10 +717,32 @@ into the release gate. Details stay in the linked dated sections, marked
 Everything found before 2026-09-25 moved to
 [2.0](#found-along-the-way-in-19-moved-to-20) that day.
 
+- [ ] (Found along the way) Sign release archives so the updater can
+      check them against a key built into the game, not only against the
+      checksum GitHub lists next to the file.
+- [ ] (Found along the way) Port a deleted Python data tool into `ff-tools`
+      when a data refresh needs it (October 22 section).
+      [October 22 audit](#october-22-repository-size-and-security-audit)
+- [ ] (Found along the way) Decide whether to rewrite history to drop the
+      retired music files, which take about 440 MB of the repository.
+      [October 22 audit](#october-22-repository-size-and-security-audit)
 - [x] Driving speech audit (owner, 2026-10-03, from a player report): quiet
       and urgent only no longer call out traffic, a line either rung leaves
       out makes no sound, and quiet says cruise, keeper and work zone
       updates short. Urgent only now says when a work zone turns cruise off.
+- [x] The exit countdown's one-mile call names the ramp's exit speed
+      (player report, 2026-10-20): it had been said only past the gore, too
+      late to plan for, and a ramp posted 20 rolled a truck. Same number as
+      the ramp line; the approach still never asks the truck to slow.
+- [x] Issue sweep, 2026-10-21: with lane keeping on full a tap change waits
+      while the lane is taken (issue 356); the Record line counts safety
+      incidents and crashes (issue 347); UTF-16 playlists load (issue 355).
+- [x] Sound stops for the session after a Bluetooth headset connects or
+      disconnects (issue 483). Kira's cpal stream manager unwrapped the new
+      stream on a device change and gave up when no default device was
+      there at the moment of a disconnect. Hearken now opens the device
+      itself and retries every half second (orinks-games/hearken PR 9,
+      pinned 2026-10-22). Still wants a Bluetooth check by ear on Windows.
 - [ ] A listening pass by the owner at quiet and urgent only, at the wheel.
 - [ ] A listening pass by the owner on a ride-along shift: the co-driver's
       notes, the hazard calls, and how often they speak.
@@ -699,6 +754,11 @@ Everything found before 2026-09-25 moved to
       game has no shoulder pull-over to make it there yet (2026-10-19).
 - [ ] A slept-through stretch judges whether a scale ahead is open at the
       time the jump starts, not when the truck would reach it (2026-10-19).
+- [ ] One player's game stops responding every time they switch to
+      another window (player report, 2026-10-21); it does not happen on the
+      owner's machine. The game log now notes each focus change and names
+      the part of the frame that held the game for five seconds or more.
+      Waiting on that player's log.
 - [ ] How far past a lane closure the truck stays out is chosen by the
       closure's name; it belongs on the hazard row as a length, so a new
       long hazard (a spill, a work zone) gets it too (2026-10-19).
@@ -929,6 +989,33 @@ Everything found before 2026-09-25 moved to
       held to 3 to 10; ASSUMED 6 before that), F speaks it, and a fuel range
       warning speaks once when it falls short of the next fuel stop this rig
       can use, or of the destination when none comes first.
+- [x] Stops say whether they sell fuel (issue #272 follow-up, a truck
+      parking lot named "The 115 Truck Stop" had no pumps). Truck stops,
+      travel centers, fuel stations, service plazas and truck parking say
+      Fuel or No fuel in the stop callout (terse keeps only No fuel), and
+      one without pumps says No fuel here on arrival. Public rest areas,
+      repair shops and weigh stations say nothing about fuel: nobody
+      expects pumps there. The 15 percent low fuel warning names the next
+      fuel stop this rig can use before the destination, or that there is
+      none.
+
+- [x] Toms River to Newark was labelled for the Garden State Parkway,
+      which bans trucks over 10,000 lb north of Interchange 105, and after
+      Parkway Interchange 98 it ran about 50 miles of state and US highways
+      (NJ 138, NJ 34, NJ 18, US 9, US 1&9) beside I-195 and the Turnpike;
+      a 102-inch truck may use those only to reach a terminal or the
+      National Network directly (2026-10-06, a realism check). It now runs
+      US 9, I-195 and the Turnpike from Interchange 7A to 13A; 66 paid
+      miles became 85.
+- [x] Thomas Edison sat on Toms River to Newark at mile 49.55, its place
+      on the old line. It is a southbound plaza, so the service-plaza fix
+      (#297) took it off this northbound leg, which now has no stops.
+- [ ] Toms River to Newark has no northbound Turnpike service plazas
+      (Joyce Kilmer, Grover Cleveland) and no Turnpike toll event (the leg
+      is flagged as a tollway with none).
+- [ ] Toms River to Newark keeps its curated top-level two lanes per
+      direction; the Turnpike's dual roadways from Interchange 6 to 14 carry
+      more (the baked lane segments hold OSM's counts).
 
 - [x] More music on the Terrestrial dial (owner, 2026-10-03, from player
       feedback): 156 commercial music stations in 35 states, each heard
@@ -1165,7 +1252,7 @@ Everything found before 2026-09-25 moved to
       VoiceOver gestures as key presses, and F2 or a three-finger tap for a
       spoken list of driving commands. `tools/build_ios.py` packages it;
       `docs/ios.md` has the gestures (2026-09-29).
-- [x] iOS sideload packaging: `tools/build_ios.py --sideload` builds a device
+- [x] iOS sideload packaging: `cargo tools build-ios --sideload` builds a device
       IPA without an Apple certificate or provisioning profile, ready for
       re-signing in a sideloading tool; the signed `--device --ipa` path is
       documented too (2026-10-08).
@@ -1608,6 +1695,25 @@ its status or release decision.
       and failure-hook flags went too, and a Linux install no longer needs
       Speech Dispatcher to start (the nightly's Debian, Ubuntu and openSUSE
       boots now run without its client library).
+
+### October 22 the tools are Rust
+
+- [x] Every live Python tool is a command of the `ff-tools` crate, run as
+      `cargo tools <command>`: the release build, AppImage, iOS build and
+      TestFlight signing, release notes and the changelog gate, snapshot
+      pruning, the translation kit, translation extraction and checks, the
+      world index, the radio stream sweeps, sound packing and the playtest
+      watcher. Translation extraction and the world index produce the
+      committed files byte for byte.
+- [x] The Python is deleted: `tools/*.py`, the Python tests, `sound-test/`'s
+      scripts, `pyproject.toml` and `uv.lock`. CI runs `cargo test -p
+      ff-tools` under the same required check names, and the git hooks are
+      plain scripts in `.githooks/`.
+- [ ] (Found along the way) The map, sound and city-data tools (OSM
+      extraction, curve and grade bakes, interchanges, tolls, city services,
+      audio rendering, the imported radio catalog) were deleted, not ported.
+      They are in git history. Port each into `ff-tools` when a data
+      refresh needs it.
 
 ### September 21 the Python sunset
 
@@ -2372,6 +2478,8 @@ its status or release decision.
       in the menu rotation, From Bossa to Blues in the day drive pool (so
       the Roadhouse plays it). Pack re-pinned at 380 entries and
       republished.
+- [x] From Bossa to Blues joins the menu rotation from level 9 on, next to
+      Million Mile Morning, by owner request (2026-10-20).
 
 ### September 12 long sessions and speech
 
@@ -3336,6 +3444,27 @@ the outside temperature.
       describes would let the engine open up too.
 - [ ] A passenger window (Shift Z is taken; it would need another key) if
       players ask.
+
+### October 22 repository size and security audit
+
+- [x] Update unpacking: the zip reader moved to a release that refuses
+      entries and links pointing outside the update folder, and TLS
+      libraries and root certificates were bumped past this month's
+      advisories.
+- [x] The apply script escapes the install folder, so a folder named with
+      a percent sign (Windows) or a dollar sign (Linux, macOS) no longer
+      sends the update somewhere else.
+- [x] The browser only opens http and https addresses; the activation
+      address comes from the site and is checked before it is opened.
+- [x] Third-party GitHub Actions in the release jobs are pinned to commits.
+- [ ] (Found along the way) Release signing: the updater trusts GitHub's
+      HTTPS and the asset checksum GitHub publishes. A signature checked
+      against a public key in the game would survive a compromised release
+      upload.
+- [ ] (Found along the way) History rewrite: about 440 MB of the 800 MB
+      repository is music deleted in August 2026; a filter-repo pass
+      measured 346 MB. It needs a force push and fresh clones, so it waits
+      for the owner.
 
 ## 2.0 planned -- the working week and home
 

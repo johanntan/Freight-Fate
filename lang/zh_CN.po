@@ -5607,11 +5607,11 @@ msgstr "无名公共道路"
 msgid "a side street"
 msgstr "一条小街"
 
-msgid "right"
-msgstr "右"
-
 msgid "ahead"
 msgstr "前方"
+
+msgid "right"
+msgstr "右"
 
 #. placeholders: {highway}
 msgid "Start on {highway}."
@@ -8142,9 +8142,18 @@ msgstr "记录：CDL被{verb}，还剩{left}。{clears_text}解除。"
 msgid "Record: clean."
 msgstr "记录：干净。"
 
-#. placeholders: {count_word}, {noun}
-msgid "{count_word} {noun} in the last year"
-msgstr "过去一年{count_word}次{noun}"
+msgid "safety incident"
+msgstr ""
+
+msgid "safety incidents"
+msgstr ""
+
+msgid "crashes"
+msgstr "次事故"
+
+#. placeholders: {join}, {last}
+msgid "{join} and {last}"
+msgstr "{join}和{last}"
 
 msgid "major offense"
 msgstr "重大违法"
@@ -8560,10 +8569,6 @@ msgstr "标准CDL"
 #. placeholders: {endorsement_label}
 msgid "the {endorsement_label}"
 msgstr "{endorsement_label}"
-
-#. placeholders: {join}, {last}
-msgid "{join} and {last}"
-msgstr "{join}和{last}"
 
 #. placeholders: {f}
 msgid "{f} driving hours"
@@ -11323,18 +11328,6 @@ msgstr "路线1避开{reason}，能省{minutes_words}。"
 msgid "Construction: {spots_text}."
 msgstr ""
 
-msgid "autumn"
-msgstr "秋季"
-
-msgid "spring"
-msgstr "春季"
-
-msgid "summer"
-msgstr "夏季"
-
-msgid "winter"
-msgstr "冬季"
-
 msgid "Monday"
 msgstr "星期一"
 
@@ -11355,6 +11348,18 @@ msgstr "星期六"
 
 msgid "Sunday"
 msgstr "星期日"
+
+msgid "winter"
+msgstr "冬季"
+
+msgid "spring"
+msgstr "春季"
+
+msgid "summer"
+msgstr "夏季"
+
+msgid "autumn"
+msgstr "秋季"
 
 msgid "January"
 msgstr "一月"
@@ -12932,14 +12937,12 @@ msgstr "发动机声偏向"
 
 msgid ""
 "Not a sound of its own: it is the engine you are always hearing, leaning to "
-"one side. Steer toward the lean, unless you have set the Steering guide row "
-"to steer away from it. It leans the way the wheel should go, so it points "
-"into a bend before you reach it and away from the edge you are drifting "
-"toward. This is the one cue here you follow rather than avoid, and it eases "
-"back to the middle as you make the turn or come straight."
+"one side. Steer toward the engine, unless you have set the Steering guide "
+"row to steer away from it. It leans the way the wheel should go, so it "
+"points into a bend before you reach it and away from the edge you are "
+"drifting toward. This is the one cue here you follow rather than avoid, and "
+"it eases back to the middle as you make the turn or come straight."
 msgstr ""
-"它没有自己的声音：就是你一直听到的发动机声，偏向一侧。朝偏向的一侧转向，除非你把“转向引导”一项设成了反向转向。它偏向方向盘应该转的方向，所以在你到达弯"
-"道之前就会指向弯里，也会偏离你正在漂向的那一侧边缘。这是这里唯一一个你要跟着走、而不是避开的提示；当你转过弯或者回正时，它会慢慢回到中间。"
 
 msgid ""
 "Every bend and street corner, in every lane keeping mode. It also leans to "
@@ -13752,9 +13755,19 @@ msgstr "，位于{exit_label}"
 msgid "{planned_prefix}{typed_name}{exit_part} in {distance}."
 msgstr "{planned_prefix}{typed_name}{exit_part}，还有{distance}。"
 
+msgid "Fuel."
+msgstr ""
+
+msgid "No fuel."
+msgstr ""
+
 #. placeholders: {exit_hint}
 msgid "Press {exit_hint} to signal for the exit."
 msgstr "按{exit_hint}为出口打转向灯。"
+
+#. placeholders: {terse}
+msgid "{terse} No fuel."
+msgstr ""
 
 msgid "estimated "
 msgstr "预计"
@@ -16289,6 +16302,12 @@ msgid ""
 "Route inspection after pickup covers rest, fuel, toll, weather, and "
 "restrictions."
 msgstr "提货后的路线检查涵盖休息、燃油、过路费、天气和限制。"
+
+#. placeholders: {hours}
+msgid ""
+"Trip hours: about {hours} driving hours, with the co-driver taking turns "
+"instead of 10-hour sleeps."
+msgstr ""
 
 #. placeholders: {hours}
 msgid "Trip hours: about {hours} driving hours."
@@ -20287,6 +20306,10 @@ msgid ""
 "Gestures can be moved in Settings, Gameplay, Controls, Touch gestures."
 msgstr "手势可以在设置、游戏玩法、操作、触摸手势里更改。"
 
+#. placeholders: {name}
+msgid "{name} can take the wheel from the pause menu."
+msgstr ""
+
 msgid "for the corner"
 msgstr "为了拐角"
 
@@ -22527,6 +22550,13 @@ msgid ""
 "ahead on this route."
 msgstr "续航里程大约{range_text}，到不了目的地，这条路线前方也没有加油点。"
 
+#. placeholders: {name}, {distance_text}
+msgid "Next fuel: {name}, {distance_text}."
+msgstr ""
+
+msgid "No fuel stop before the destination."
+msgstr ""
+
 msgid "on the carrier account, and dispatch noted the service call"
 msgstr "记在承运商账上，调度记录了这次服务呼叫"
 
@@ -23363,6 +23393,10 @@ msgstr "目的地出口"
 #. placeholders: {name}
 msgid "Exit for {name}"
 msgstr "{name}出口"
+
+#. placeholders: {speed_value}
+msgid " Exit speed {speed_value}."
+msgstr " 出口速度{speed_value}。"
 
 msgid " Traffic is tight."
 msgstr " 车流很密。"
@@ -26917,6 +26951,9 @@ msgstr "你已经休息好了。{preview}"
 msgid "Inspection station."
 msgstr "检查站。"
 
+msgid "No fuel here."
+msgstr ""
+
 #. placeholders: {summary}
 msgid "Loyalty program: {summary}"
 msgstr "会员计划：{summary}"
@@ -28405,6 +28442,45 @@ msgstr ""
 msgid "{name} has parked and hands you the wheel. Your 10-hour rest is in."
 msgstr ""
 
+#. placeholders: {name}
+#. one sentence of a longer line
+msgid "{name} parked when their hours ran out, and you slept on."
+msgstr ""
+
+#. placeholders: {name}
+msgid ""
+"{name} parked when their hours ran out, and you slept on. Your 10-hour rest "
+"is in."
+msgstr ""
+
+#. placeholders: {name}
+#. one sentence of a longer line
+msgid ""
+"{name} pulled onto the shoulder when their hours ran out, with no lot in "
+"reach, and you slept on there."
+msgstr ""
+
+#. placeholders: {name}
+msgid ""
+"{name} pulled onto the shoulder when their hours ran out, with no lot in "
+"reach, and you slept on there. Your 10-hour rest is in."
+msgstr ""
+
+#. one sentence of a longer line
+msgid "Their hours run out before the next place to park."
+msgstr ""
+
+#. placeholders: {name}
+#. one sentence of a longer line
+msgid "{name} has parked for the end of their shift."
+msgstr ""
+
+#. placeholders: {name}
+msgid ""
+"{name} has parked for the end of their shift. Their hours run out before "
+"the next place to park."
+msgstr ""
+
 #. one sentence of a longer line
 msgid "The truck took damage."
 msgstr "卡车受损了。"
@@ -28542,6 +28618,30 @@ msgid ""
 "are logged in the sleeper berth."
 msgstr ""
 
+#. placeholders: {name}, {left}
+msgid ""
+"{name} has {left} of driving left, short of your 10-hour rest, so they park "
+"and you finish it there."
+msgstr ""
+
+#. one sentence of a longer line
+msgid "Shoulder rest is poor and risks a ticket or minor damage."
+msgstr ""
+
+#. placeholders: {name}, {left}
+#. one sentence of a longer line
+msgid ""
+"{name} has {left} of driving left, short of your 10-hour rest, and no truck "
+"lot in reach, so they stop on the shoulder and you finish it there."
+msgstr ""
+
+#. placeholders: {name}, {left}
+msgid ""
+"{name} has {left} of driving left, short of your 10-hour rest, and no truck "
+"lot in reach, so they stop on the shoulder and you finish it there. "
+"Shoulder rest is poor and risks a ticket or minor damage."
+msgstr ""
+
 #. placeholders: {name}
 msgid ""
 "{name} can drive from here, or take over later from the pause menu, while "
@@ -28628,13 +28728,16 @@ msgid ""
 "{name} drove on after a collision with {animal}. Damage {damage} percent."
 msgstr ""
 
-msgid "shift"
-msgstr ""
-
 msgid "rested"
 msgstr ""
 
 msgid "Refuel"
+msgstr ""
+
+msgid "last lot"
+msgstr ""
+
+msgid "shift"
 msgstr ""
 
 msgid "stalled"
@@ -28725,6 +28828,13 @@ msgstr ""
 
 #. placeholders: {name}, {f}
 msgid "Team load: {name} drove {f} of the miles"
+msgstr ""
+
+#. placeholders: {name}
+msgid "{name} took a 30-minute break on the shoulder."
+msgstr ""
+
+msgid "slept on"
 msgstr ""
 
 #. placeholders: {name}, {gallons}, {place}
@@ -29992,32 +30102,6 @@ msgid ""
 msgstr ""
 "{sentence_start}，{clock_text}到{clock_text2}，{duration_text}，{location}{note}"
 "。"
-
-msgid "Logbook has no recent duty entries yet."
-msgstr "日志里还没有最近的值班记录。"
-
-#. placeholders: {entry_line}
-#. one sentence of a longer line
-msgid "Latest entry: {entry_line}"
-msgstr "最新记录：{entry_line}"
-
-#. placeholders: {duration_text}, {duration_text2}, {duration_text3}, {duration_text4}
-#. one sentence of a longer line
-msgid ""
-"Logbook shows driving {duration_text}, on duty not driving "
-"{duration_text2}, off duty {duration_text3}, sleeper berth {duration_text4}."
-msgstr ""
-"日志显示驾驶{duration_text}，值班未驾驶{duration_text2}，下班{duration_text3}，卧铺{duration_t"
-"ext4}。"
-
-#. placeholders: {duration_text}, {duration_text2}, {duration_text3}, {duration_text4}, {entry_line}
-msgid ""
-"Logbook shows driving {duration_text}, on duty not driving "
-"{duration_text2}, off duty {duration_text3}, sleeper berth "
-"{duration_text4}. Latest entry: {entry_line}"
-msgstr ""
-"日志显示驾驶{duration_text}，值班未驾驶{duration_text2}，下班{duration_text3}，卧铺{duration_t"
-"ext4}。最新记录：{entry_line}"
 
 msgid ""
 "Use up and down arrows to review logbook lines. Enter repeats the current "
@@ -31809,21 +31893,18 @@ msgstr ""
 msgid "Steering guide: {else}"
 msgstr "转向引导：{else}"
 
-msgid "steer away from the lean"
-msgstr "背着偏向转"
+msgid "steer away from the engine"
+msgstr ""
 
-msgid "steer toward the lean"
-msgstr "朝着偏向转"
+msgid "steer toward the engine"
+msgstr ""
 
 msgid ""
-"Which way to steer when the engine leans. Toward the lean is the default: "
-"the engine pans the way you have to turn, and comes back to the middle as "
-"you turn. Away from the lean flips it, for drivers who learned the other "
-"habit in audio racing games. Everything else about the guide is the same "
-"either way."
+"Which way to steer when the engine sound moves to one side. Toward the "
+"engine is the default: the engine moves to the side you have to turn to, "
+"then back to the middle as you turn. Away from the engine flips it, for "
+"drivers used to that from audio racing games."
 msgstr ""
-"发动机声音偏向一侧时往哪边转。默认是朝着偏向转：发动机声音偏向你需要转的方向，你转过去后它会回到中间。“背着偏向转”则相反，适合在音频赛车游戏里养成了另"
-"一种习惯的司机。引导的其他一切在两种方式下都一样。"
 
 #. placeholders: {else}
 msgid "Lane guide sound: {else}"
@@ -34984,9 +35065,6 @@ msgstr "次停驶令"
 msgid "out-of-service orders"
 msgstr "次停驶令"
 
-msgid "crashes"
-msgstr "次事故"
-
 msgid "cargo claim"
 msgstr "次货物索赔"
 
@@ -36809,6 +36887,57 @@ msgstr "右括号"
 #. placeholders: {ch}
 msgid "cap {ch}"
 msgstr "大写{ch}"
+
+#~ msgid "Logbook has no recent duty entries yet."
+#~ msgstr "日志里还没有最近的值班记录。"
+
+#~ msgid "Latest entry: {entry_line}"
+#~ msgstr "最新记录：{entry_line}"
+
+#~ msgid ""
+#~ "Logbook shows driving {duration_text}, on duty not driving "
+#~ "{duration_text2}, off duty {duration_text3}, sleeper berth {duration_text4}."
+#~ msgstr ""
+#~ "日志显示驾驶{duration_text}，值班未驾驶{duration_text2}，下班{duration_text3}，卧铺{duration_t"
+#~ "ext4}。"
+
+#~ msgid ""
+#~ "Logbook shows driving {duration_text}, on duty not driving "
+#~ "{duration_text2}, off duty {duration_text3}, sleeper berth "
+#~ "{duration_text4}. Latest entry: {entry_line}"
+#~ msgstr ""
+#~ "日志显示驾驶{duration_text}，值班未驾驶{duration_text2}，下班{duration_text3}，卧铺{duration_t"
+#~ "ext4}。最新记录：{entry_line}"
+
+#~ msgid "{count_word} {noun} in the last year"
+#~ msgstr "过去一年{count_word}次{noun}"
+
+#~ msgid ""
+#~ "Not a sound of its own: it is the engine you are always hearing, leaning to "
+#~ "one side. Steer toward the lean, unless you have set the Steering guide row "
+#~ "to steer away from it. It leans the way the wheel should go, so it points "
+#~ "into a bend before you reach it and away from the edge you are drifting "
+#~ "toward. This is the one cue here you follow rather than avoid, and it eases "
+#~ "back to the middle as you make the turn or come straight."
+#~ msgstr ""
+#~ "它没有自己的声音：就是你一直听到的发动机声，偏向一侧。朝偏向的一侧转向，除非你把“转向引导”一项设成了反向转向。它偏向方向盘应该转的方向，所以在你到达弯"
+#~ "道之前就会指向弯里，也会偏离你正在漂向的那一侧边缘。这是这里唯一一个你要跟着走、而不是避开的提示；当你转过弯或者回正时，它会慢慢回到中间。"
+
+#~ msgid "steer away from the lean"
+#~ msgstr "背着偏向转"
+
+#~ msgid "steer toward the lean"
+#~ msgstr "朝着偏向转"
+
+#~ msgid ""
+#~ "Which way to steer when the engine leans. Toward the lean is the default: "
+#~ "the engine pans the way you have to turn, and comes back to the middle as "
+#~ "you turn. Away from the lean flips it, for drivers who learned the other "
+#~ "habit in audio racing games. Everything else about the guide is the same "
+#~ "either way."
+#~ msgstr ""
+#~ "发动机声音偏向一侧时往哪边转。默认是朝着偏向转：发动机声音偏向你需要转的方向，你转过去后它会回到中间。“背着偏向转”则相反，适合在音频赛车游戏里养成了另"
+#~ "一种习惯的司机。引导的其他一切在两种方式下都一样。"
 
 #~ msgid "{lane_name} lane  ·  lane keeping {lane_assist}"
 #~ msgstr "{lane_name}车道  ·  车道保持 {lane_assist}"

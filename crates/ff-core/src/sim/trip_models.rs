@@ -320,7 +320,6 @@ pub fn approach_shed_mi(from_mph: f64, to_mph: f64) -> f64 {
 pub const NIGHT_HAZARD_BONUS: f64 = 0.10; // extra hazard risk after dark
 /// A zone flip that flips back within this distance is boundary noise.
 pub const TIMEZONE_DWELL_MI: f64 = 10.0;
-pub const NIGHT_TRAFFIC_KEEP: f64 = 0.4;
 /// Open road guaranteed between generated slow zones.
 pub const ZONE_MIN_GAP_MI: f64 = 8.0;
 pub const RUSH_HOUR_WINDOWS: [(f64, f64); 2] = [(6.5, 9.0), (16.0, 18.5)];
@@ -697,7 +696,6 @@ impl RoadsideCallout {
 }
 
 pub const LANDMARK_MIN_SPACING_MI: f64 = 2.0;
-pub const VILLAGE_ENTER_OFF_MI: f64 = 0.5;
 pub const VILLAGE_PASS_OFF_MI: f64 = 1.5;
 pub const VILLAGE_MIN_SPACING_MI: f64 = LANDMARK_MIN_SPACING_MI;
 pub const VILLAGE_PAIR_WINDOW_MI: f64 = 1.5;
@@ -989,6 +987,29 @@ impl RoadStop {
     /// ("cross-dock: Chicago Cross-Dock" -> "Chicago Cross-Dock").
     pub fn spoken_name(&self) -> String {
         typed_name(self.label(), &self.name, ": ")
+    }
+
+    /// Whether a driver can buy fuel here.
+    pub fn sells_fuel(&self) -> bool {
+        self.actions.iter().any(|action| action == "fuel")
+    }
+
+    /// Whether a driver could expect pumps here, so the stop's fuel verdict
+    /// is worth speaking: the fuel types, and truck parking, whose lots are
+    /// often named "Truck Stop" (issue #272, "The 115 Truck Stop"). Nobody
+    /// pulls into a public rest area, a repair shop or a weigh station for
+    /// diesel, so saying "No fuel." at every one would be noise.
+    pub fn fuel_expected(&self) -> bool {
+        matches!(
+            self.stop_type.as_str(),
+            "truck_stop" | "travel_center" | "fuel_station" | "service_plaza" | "truck_parking"
+        )
+    }
+
+    /// The fuel verdict the stop callout speaks: whether the stop sells fuel
+    /// where a driver could expect it to, and nothing elsewhere.
+    pub fn fuel_callout(&self) -> Option<bool> {
+        self.fuel_expected().then(|| self.sells_fuel())
     }
 
     pub fn parking_text(&self) -> String {

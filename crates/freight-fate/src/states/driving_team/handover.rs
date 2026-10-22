@@ -3,6 +3,7 @@
 use ff_core::models::business_constants::is_owner_operator;
 use ff_core::models::co_driver::{self, Pairing};
 use ff_core::models::jobs::Job;
+use ff_core::sim::hos::{self, HosClock};
 
 use crate::app::{GameContext, Say};
 use crate::states::base::MenuItem;
@@ -10,6 +11,7 @@ use crate::states::driving::DrivingState;
 use crate::states::driving_core::profile_of;
 use crate::states::driving_pause_states::PauseMenuState;
 
+use super::pilot::{StopPurpose, REACH_MPH};
 use super::TeamMode;
 
 impl DrivingState {
@@ -74,6 +76,44 @@ pub fn terms_text(ctx: &GameContext, name: &str) -> String {
         "{pay} Those miles earn you half the experience. While {name} drives, you are logged in the \
          sleeper berth."
     )
+}
+
+/// When the co-driver's hours run out before the player's 10-hour rest is
+/// in: how much driving they have. Before it, a player learned that only
+/// after handing over (player report, 2026-10-20).
+fn short_shift_text(ctx: &GameContext, d: &DrivingState, name: &str) -> Option<String> {
+    let mode = &ctx.settings.hos_mode;
+    let player = &profile_of(ctx).hos;
+    let fresh = HosClock::new();
+    let co = d.team.as_ref().map_or(&fresh, |team| &team.off_wheel_hos);
+    // A co-driver short of their own rest gets it in the sleeper while the
+    // player drives; handed the wheel now, what counts is what they have.
+    let hours_left = co_driver::shift_left_min(co, mode)? - co_driver::CO_DRIVER_SUMMON_LEAD_MIN;
+    let rest_left = co_driver::rest_left_min(player);
+    if rest_left <= hours_left {
+        return None;
+    }
+    let left = hos::duration_text(hours_left.max(0.0) / 60.0);
+    // Where their hours reach a lot, they park there; where they do not,
+    // the rest is slept on the shoulder (see `shoulder`).
+    let here = d.trip.position_mi;
+    let reach = hours_left.max(0.0) / 60.0 * REACH_MPH;
+    let lot_in_reach = d
+        .co_driver_stops(StopPurpose::ShiftEnd, here)
+        .iter()
+        .any(|stop| stop.at_mi <= here + reach);
+    Some(if lot_in_reach {
+        format!(
+            "{name} has {left} of driving left, short of your 10-hour rest, so they park and you \
+             finish it there."
+        )
+    } else {
+        format!(
+            "{name} has {left} of driving left, short of your 10-hour rest, and no truck lot in \
+             reach, so they stop on the shoulder and you finish it there. Shoulder rest is poor \
+             and risks a ticket or minor damage."
+        )
+    })
 }
 
 /// The introduction to team driving, said once per career the first time a
@@ -152,7 +192,10 @@ impl PauseMenuState {
         self.team_intro = new_intro(ctx, name, false);
         let carrier = ff_core::models::career::carrier_name_of(profile_of(ctx));
         let who = co_driver::pairing_line(&pairing, &carrier);
-        let terms = terms_text(ctx, name);
+        let terms = match short_shift_text(ctx, d, name) {
+            Some(short) => format!("{short} {}", terms_text(ctx, name)),
+            None => terms_text(ctx, name),
+        };
         vec![
             MenuItem::new(
                 format!("Hand the wheel to {name} and ride along"),

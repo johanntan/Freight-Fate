@@ -12,7 +12,7 @@
 - **A Visual display setting turns the window's drawing off to save battery.** It is under Settings, Gameplay, Controls; speech and sound stay the same.
 - **A co-driver can take the wheel on long loads.** Pause to ride along or sleep through their shift; their miles pay you less and earn half the experience.
 - **A co-driver can drive you out of the shipper.** On long loads the pickup menu offers it, with the pay terms in the row's help.
-- **Some long loads are now team loads.** They pay more, with no time for a 10-hour break; a co-driver shares the wheel.
+- **Some long loads are now team loads.** They pay more and plan no 10-hour sleep; near the end of your hours, the co-driver takes the wheel.
 - **A co-driver hands back once your 10-hour rest is in.** Press C to hear your rest so far and when they hand back.
 - **Team driving is explained the first time a load can be shared.** Job details say when a co-driver is offered.
 - **Career stats lists the co-drivers you have teamed with.** Open Co-drivers there for each one's loads with you and their story.
@@ -20,6 +20,8 @@
 - **Truck stops in chain-law states sell snow chains.** With no usable set aboard, the stop menu offers a new set for 1,000 dollars.
 - **Dispatch sends road service with chains when you have none under a chain law.** Report truck trouble; the set arrives in an hour and a half.
 - **Job details now say the hours and fuel a run needs.** Trip hours, your driving time left, and your fuel level and range, before you accept.
+- **Truck stops and parking lots say whether they sell fuel.** One without pumps says No fuel ahead and again when you pull in.
+- **The low fuel warning names the next fuel stop and how far it is.** With none before your destination, it says so.
 
 - **Leaving with a load now tells you your driving time left and fuel.** It adds a break, a sleep or a short tank only when the run needs one.
 
@@ -38,6 +40,7 @@
 - **The game can speak Russian.** Choose Русский under Settings, Speech, Language; the radio stays in English.
 - **The game can speak Polish.** Choose Polski under Settings, Speech, Language; the radio stays in English.
 - **The game can speak Japanese.** Choose 日本語 under Settings, Speech, Language; the radio stays in English.
+- **The game can speak Turkish.** Choose Türkçe under Settings, Speech, Language; the radio stays in English.
 - **The game can speak Simplified Chinese.** Choose 简体中文 under Settings, Speech, Language; the radio stays in English. Thanks to wangru2025 ([PR 448](https://github.com/orinks-games/Freight-Fate/pull/448)).
 
 - **Key and button practice says what each key or button does at the wheel.** Shift F1 or Back plus Start opens it anywhere.
@@ -90,8 +93,15 @@
 
 - **Favorite stations now play from anywhere.** A saved local station keeps playing after you leave its area, with no fade or static.
 
+- **Manassas, Virginia is now a freight city.** I-66 connects its real FedEx Freight and US Foods facilities to Washington and Winchester.
+
 ### Changed
 
+- **A copied delivery summary now ends with #FreightFateRuns.**
+- **The radio's right door speaker plays louder and sooner through the cab speakers.** The radio now sounds nearly centered, leaning only a little toward the driver.
+- **The one-mile call for your exit now gives the exit speed.** You still brake to it in the exit lane.
+- **From Bossa to Blues now plays in the menus from level 9 on,** alongside Million Mile Morning. It still plays on the road too.
+- **The Steering guide setting now reads steer toward the engine, or steer away from the engine.**
 - **The game window draws only when it changes,** so it uses less power.
 - **Drivers below level 10 get warnings instead of most citations.** Serious speeding, the work-zone barrels, failing to pull over, running a scale and out-of-service orders still count.
 - **The carrier shop now repairs a company tractor at 40 percent damage before the next load.** It takes an hour on duty.
@@ -200,6 +210,18 @@
 
 ### Fixed
 
+- **Updates now install into folders with a percent or dollar sign in the name.** Before, the update could be copied somewhere else.
+- **Sound comes back after a Bluetooth headset connects or disconnects.** It moves to the new sound device within a second instead of going silent until a restart.
+- **With lane keeping on full, a lane change waits while that lane is taken.** You hear what is in it, such as Right lane blocked by a state trooper, instead of a sideswipe.
+- **The Record line in Career stats now counts running off the road asleep and crashes.** It said clean while the list below it named them.
+- **Playlists saved as UTF-16, as Windows Media Player does, now show up on the radio dial.** The Playlists folder no longer reads as empty.
+- **Resuming a saved trip no longer plays several police sirens at once.** Troopers you passed before saving stay quiet.
+- **A co-driver short of hours now parks and lets you finish your 10-hour rest.** They stop at the last lot in reach, or on the shoulder when none is.
+- **A co-driver's 30-minute break no longer wakes you.** With no stop in reach, they take it on the shoulder and drive on.
+- **The handover rows say when a co-driver cannot cover your whole rest.** The row's help gives their driving time left.
+- **Toms River to Newark now takes I-195 and the Turnpike instead of the truck-banned Garden State Parkway.** It pays 85 miles, up from 66.
+- **Continuing straight onto a street such as Brighton Boulevard no longer counts as a right turn.**
+- **Turnpike and I-95 service plazas now sit on the side they serve, with diesel and food.** The truck-banned Merritt Parkway plaza is gone.
 - **Turnpike doubles loads now list two 48-foot trailers, not twin 28-foot ones.** Twin-trailer parcel loads are lighter, up to 15 tons.
 - **Live weather no longer gives up as quickly.** It waits longer for the weather service and asks about fewer places at a time.
 - **During a weather service outage, live weather keeps the last real reading for up to six hours.** You hear it as last-known live weather, not simulated storms.

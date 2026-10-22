@@ -52,7 +52,7 @@ This file catalogues the game layer, and then the spoken vocabulary for both.
 | Now playing (spoken "Now playing on <station>: <song>"; what a stream says it is playing -- "song information" when there is none) | `_radio_now_playing_text`, `AudioEngine.radio_now_playing`, `parse_icy_stream_title` | `states/driving_updates.py`, `audio.py` |
 | Personal playlist station (one of the player's own playlist files on the dial) | `PERSONAL_PLAYLIST_SOURCE_TYPE`, `load_personal_playlists` | `radio.py` |
 | Station suggestion (spoken "Suggest a station"; a station a player sends from the Radio app for review) | `SuggestKindState`, `StationSuggestionEntryState`, `StationSuggestion` | `states/driving_radio_suggest.rs`, `community_stations.rs` |
-| Community station (a suggested station the owner accepted; shipped in `radio_community.json` and downloaded at launch; an AM or FM one plays near its licensed transmitter, else on the web radio band) | `ff_core::radio::community`, `COMMUNITY_STATIONS_FILE`, `RADIO_COMMUNITY_RESOURCE` | `radio/community.rs`, `tools/fold_community_stations.py` |
+| Community station (a suggested station the owner accepted; shipped in `radio_community.json` and downloaded at launch; an AM or FM one plays near its licensed transmitter, else on the web radio band) | `ff_core::radio::community`, `COMMUNITY_STATIONS_FILE`, `RADIO_COMMUNITY_RESOURCE` | `radio/community.rs`, `cargo tools fold-community-stations` |
 | Save migration | `migrate_save_data`, `SAVE_VERSION` | `models/save_migration.py` |
 | Career from an earlier version (the 1.9 cutover gate; never "legacy" in spoken text) | `created_line`, `LegacyCareerError` | `models/profile.py` |
 | Integrity signature | `SIGNATURE_FIELD`, `ProfileIntegrityError` | `models/profile.py` |
@@ -211,7 +211,7 @@ Not classes, but part of the ontology, because the shape is load-bearing:
   `tools/world_source.py`, where `load_world()` returns the whole world as one
   dict and `save_world(data)` writes it back as per-state shards.
 - The game loads the indexed `data/world_data/` tree.
-- `tools/index_world.py` regenerates the index; `--check` verifies the two are
+- `cargo tools index-world` regenerates the index; `--check` verifies the two are
   in sync, and CI and tests expect that.
 
 Both trees shard by the state a leg starts in (`legs/TX.json`), so a one-leg
@@ -299,7 +299,7 @@ from the words, and synonyms cost them a re-read.
 | The warning that a bend or ramp curve is being taken, or approached, faster than this load and this lane keeping take it at no cost, with the speed that does ("Sharp left, too fast. Slow to 37 miles per hour.") | too fast; slow to (the number) | drifting to the outside (the old line, retired 2026-09-24), rollover warning, safe speed, advisory (the number is not the sign's) | `driving_rollover::update_curve_warning`, `curve_safe_mph` |
 | A truck going over on its side in a bend because the bend pulled harder than the load's rollover threshold ("The truck rolled over in the bend.") | rolled over | tipped over, flipped, jackknifed (a different crash), overturned, wreck | `DrivingState::roll_over`, `TruckState::roll_share`, `vehicle/roll.rs` |
 | An accident on the driving record, such as a rollover: counted on the safety record and reputation like a serious violation, public as a count ("It goes on your driving record as a crash.") | crash | accident (the regulation's word, never spoken), wreck, incident, collision (that is the traffic hit) | `RECORD_CRASH`, `DrivingRecord::crashes`, `crash_times`, `crashes` on the public profile |
-| The ramp's advisory, the speed its curve is built for, said once as the truck enters the exit lane ("Exit speed 45.") | exit speed | ramp speed, ramp limit, safe ramp speed, advisory (as the spoken noun) | `armed_ramp_mph`, `take_the_ramp`, `ExitRampLayout::curve_mph` |
+| The ramp's advisory, the speed its curve is built for, said in the one-mile call for the exit and once as the truck enters the exit lane ("Exit speed 45.") | exit speed | ramp speed, ramp limit, safe ramp speed, advisory (as the spoken noun) | `armed_ramp_mph`, `take_the_ramp`, `ExitRampLayout::curve_mph` |
 | The assist that brakes and creeps the truck to the facility entrance, and, from a cleared ramp-end stop, drives it there hands off | Facility stopping assistance (the settings row's own name) | destination approach assistance (the setting's code name only), arrival assist, approach assist | `destination_approach_assist`, `update_destination_approach_assist`, `terminal_release_text` |
 | The assist that takes a mapped bend for the driver: brakes to its advisory on the approach, holds that speed through it, brakes inside a bend entered too fast, and steers the wheel the bend wants | Curve assistance (the settings row's own name); "slowing" when it takes the brakes, "released" when it lets go | curve speed assistance (its name before it steered), turn assist, corner assist, curve braking, bend assist, the servo (code only) | `curve_speed_assist`, `driving_updates/curve_servo.rs`, `sim::lane::tracking_steer_rad`, `update_lane` |
 | A driveway, delivery lane or parking aisle OSM holds no name for, and the approach to a facility the world generated rather than surveyed | a service road | unnamed public road, access road, service way, private road, local facility access road | `build_local_geometry.UNNAMED_SERVICE`, `build_local_approaches.fallback_road` |
@@ -444,7 +444,7 @@ from the words, and synonyms cost them a re-read.
 | A toll gantry or plaza billing the truck | Toll charged | toll cue, gantry chime | `events/toll_charged` |
 | The driver's own yawn as fatigue builds | Yawn | fatigue sound, drowsy cue | `driver/yawn` |
 | The optional note that carries the lean instead of the engine, off by default; with it on the engine stays centered | Lane guide tone (the settings row is "Lane guide sound: engine" or "tone") | guide tone, steering tone, lean tone | `guide/lane_guide_tone`, `Settings.lane_guide_tone`, `DrivingState::lean_the_tone` |
-| The setting for which way to steer when the engine leans: toward the lean by default, or away from it | Steering guide (the settings row reads "steer toward the lean" or "steer away from the lean") | invert steering, reverse guide, flipped lean | `Settings.steering_guide_inverted`, `guide_sign` |
+| The setting for which way to steer when the engine leans: toward the lean by default, or away from it | Steering guide (the settings row reads "steer toward the engine" or "steer away from the engine", naming the engine so it is never read as the rumble strip or the road noise, which pan too; before 2026-10-14, "toward the lean" or "away from the lean") | invert steering, reverse guide, flipped lean | `Settings.steering_guide_inverted`, `guide_sign` |
 | The one-time screen before the main menu that asks how much the truck should do, answered once by every player | Driving assistance (the same choice as the preset row in Settings) | setup wizard, onboarding, first-run screen | `states::assist_picker`, `Settings.assist_preset_chosen` |
 | Being looked at for something other than speed: damage, missing chains, following too close | Inspection warning | inspection cue, roadside-check tone | `events/inspection_warning` |
 | The earcon that fires with the open-scale approach notice, ahead of the ambient bed | Scale warning | weigh-station warning cue, scale earcon | `events/weigh_station_warning` |
@@ -647,7 +647,7 @@ frame never shuffles, so no terse line may reorder its slots:
 | --- | --- | --- |
 | Hazard-family cue (brake lights, slow traffic) | thing, distance, target speed | "Brake lights, 2.1 miles, 38." |
 | Merging traffic cue | thing, distance | "Merging box truck, 0.4 miles." |
-| Stop callout | name, exit, distance, qualifier | "Flying J Travel Center Corfu, exit 48A, 5 miles. Parking confirmed." |
+| Stop callout | name, exit, distance, qualifier, then "No fuel." where pumps could be expected | "Flying J Travel Center Corfu, exit 48A, 5 miles. Parking confirmed." |
 | Money consequence | what, amount, who pays | "Toll, 15 dollars, carrier." |
 | Speed limit | "Limit", the number | "Limit 65." |
 

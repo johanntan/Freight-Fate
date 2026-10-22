@@ -617,7 +617,7 @@ A CAT Scale weigh takes ten on-duty minutes and reads the steer, drive, trailer,
 
 For an open scale, slow into its lane, signal with X, stop, and use T to check in. On a controller, signal with D-pad down and check in with the right bumper and D-pad down. A required scale takes priority over a sleep plan.
 
-Don't wait for an empty tank before looking for fuel. Warnings tell you when it's near fifteen percent and when your range won't reach the next fuel stop or destination. An owner pays for rescue; a company driver takes a service-record hit.
+Don't wait for an empty tank before looking for fuel. Warnings tell you when it's near fifteen percent and when your range won't reach the next fuel stop or destination. The fifteen percent warning names the next fuel stop. Truck stops, fuel stations, service plazas and truck parking lots say Fuel or No fuel as they come up. An owner pays for rescue; a company driver takes a service-record hit.
 
 ### Weather and calendar
 
@@ -710,7 +710,7 @@ When the rest of the delivery would need a ten-hour break, the pause menu offers
 
 The pickup menu offers the same choice once the load is on: **Depart with Dan driving, and ride along**, or **and sleep**. Each row's help names the co-driver and the pay terms.
 
-**Team loads.** Some long loads on the dispatch board are booked for a team. Their details say "Team load". They pay about a third more, and the deadline leaves no time for a ten-hour break, only for changing drivers. You can still drive a team load alone, but you will be late unless the co-driver takes their turns.
+**Team loads.** Some long loads on the dispatch board are booked for a team. Their details say "Team load". They pay about a third more, and the deadline leaves no time for a ten-hour break, only for changing drivers. You can still drive a team load alone, but you will be late unless the co-driver takes their turns. Trip hours in the job details and the route plan at the shipper count on those turns, so they name no ten-hour sleep. With stop planning hints on, the hint near the end of your hours names your co-driver instead of a sleep stop.
 
 While the co-driver drives, the keys that move the truck do nothing. The information keys still answer, and Tab, the apps and the pause menu still open. If the radio was on, the co-driver may change the station or switch it off for a while; once you change it yourself, they leave it alone. A radio you left off stays off.
 
@@ -938,7 +938,7 @@ If one sound is covering another, adjust that sound's volume rather than lowerin
 | Master volume | Overall game volume. |
 | Gameplay cues volume | Horn, alerts, road, facility, and gameplay cue sounds. |
 | Lane and edge cue volume | Make rumble strips, shoulder sounds, the lane locator, and hairpin warning bars easier to hear. This works alongside Gameplay cues volume and adjusts only these road cues. Quieter keeps them below the engine, Standard brings them to its level, and Louder helps them stand out. Assistance presets leave your choice unchanged. |
-| Steering guide | Which way to steer when the engine leans. Steer toward the lean, the default, or steer away from the lean, for drivers who learned that habit in audio racing games. |
+| Steering guide | Which way to steer when the engine sound moves to one side. Steer toward the engine, the default, or steer away from the engine, for drivers used to that from audio racing games. |
 | Lane guide sound | What leans toward the side to steer: the engine, the default, or a soft tone panned the same way, for setups where the engine is hard to place. |
 | Weather sounds volume | Rain, wind, thunder, snow, and fog sounds. |
 | Engine sounds volume | Engine start, shutdown, and running engine sounds. |

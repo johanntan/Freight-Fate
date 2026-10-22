@@ -6455,11 +6455,11 @@ msgstr "безымянная дорога общего пользования"
 msgid "a side street"
 msgstr "боковая улица"
 
-msgid "right"
-msgstr "направо"
-
 msgid "ahead"
 msgstr "прямо"
+
+msgid "right"
+msgstr "направо"
 
 #. placeholders: {highway}
 msgid "Start on {highway}."
@@ -9331,9 +9331,18 @@ msgstr ""
 msgid "Record: clean."
 msgstr "История: чистая."
 
-#. placeholders: {count_word}, {noun}
-msgid "{count_word} {noun} in the last year"
-msgstr "{noun} за последний год: {count_word}"
+msgid "safety incident"
+msgstr ""
+
+msgid "safety incidents"
+msgstr ""
+
+msgid "crashes"
+msgstr "аварий"
+
+#. placeholders: {join}, {last}
+msgid "{join} and {last}"
+msgstr "{join} и {last}"
 
 msgid "major offense"
 msgstr "грубое нарушение"
@@ -9763,10 +9772,6 @@ msgstr "стандартные права CDL"
 #. placeholders: {endorsement_label}
 msgid "the {endorsement_label}"
 msgstr "{endorsement_label}"
-
-#. placeholders: {join}, {last}
-msgid "{join} and {last}"
-msgstr "{join} и {last}"
 
 #. placeholders: {f}
 msgid "{f} driving hours"
@@ -12786,18 +12791,6 @@ msgstr "Маршрут 1 объезжает {reason} и экономит {minute
 msgid "Construction: {spots_text}."
 msgstr "Ремонт дороги: {spots_text}."
 
-msgid "autumn"
-msgstr "осень"
-
-msgid "spring"
-msgstr "весна"
-
-msgid "summer"
-msgstr "лето"
-
-msgid "winter"
-msgstr "зима"
-
 msgid "Monday"
 msgstr "понедельник"
 
@@ -12818,6 +12811,18 @@ msgstr "суббота"
 
 msgid "Sunday"
 msgstr "воскресенье"
+
+msgid "winter"
+msgstr "зима"
+
+msgid "spring"
+msgstr "весна"
+
+msgid "summer"
+msgstr "лето"
+
+msgid "autumn"
+msgstr "осень"
 
 msgid "January"
 msgstr "январь"
@@ -14434,19 +14439,12 @@ msgstr "Крен двигателя"
 
 msgid ""
 "Not a sound of its own: it is the engine you are always hearing, leaning to "
-"one side. Steer toward the lean, unless you have set the Steering guide row "
-"to steer away from it. It leans the way the wheel should go, so it points "
-"into a bend before you reach it and away from the edge you are drifting "
-"toward. This is the one cue here you follow rather than avoid, and it eases "
-"back to the middle as you make the turn or come straight."
+"one side. Steer toward the engine, unless you have set the Steering guide "
+"row to steer away from it. It leans the way the wheel should go, so it "
+"points into a bend before you reach it and away from the edge you are "
+"drifting toward. This is the one cue here you follow rather than avoid, and "
+"it eases back to the middle as you make the turn or come straight."
 msgstr ""
-"Это не отдельный звук: это двигатель, который вы слышите всегда, смещённый "
-"в одну сторону. Рулите в сторону смещения, если только в строке «Подсказка "
-"руления» вы не выбрали рулить от него. Звук смещается туда, куда должен "
-"идти руль, поэтому он указывает в поворот ещё до того, как вы до него "
-"доедете, и в сторону от края, к которому вас сносит. Это единственная "
-"подсказка здесь, за которой нужно следовать, а не избегать её, и она плавно "
-"возвращается к центру, когда вы проходите поворот или выравниваетесь."
 
 msgid ""
 "Every bend and street corner, in every lane keeping mode. It also leans to "
@@ -15440,9 +15438,19 @@ msgstr ", {exit_label}"
 msgid "{planned_prefix}{typed_name}{exit_part} in {distance}."
 msgstr "{planned_prefix}{typed_name}{exit_part} через {distance}."
 
+msgid "Fuel."
+msgstr ""
+
+msgid "No fuel."
+msgstr ""
+
 #. placeholders: {exit_hint}
 msgid "Press {exit_hint} to signal for the exit."
 msgstr "Нажмите {exit_hint}, чтобы включить сигнал съезда."
+
+#. placeholders: {terse}
+msgid "{terse} No fuel."
+msgstr ""
 
 msgid "estimated "
 msgstr "примерно"
@@ -18213,6 +18221,12 @@ msgid ""
 msgstr ""
 "Проверка маршрута после погрузки охватывает отдых, топливо, платные дороги, "
 "погоду и ограничения."
+
+#. placeholders: {hours}
+msgid ""
+"Trip hours: about {hours} driving hours, with the co-driver taking turns "
+"instead of 10-hour sleeps."
+msgstr ""
 
 #. placeholders: {hours}
 msgid "Trip hours: about {hours} driving hours."
@@ -22923,6 +22937,10 @@ msgstr ""
 "Жесты можно переназначить в разделе «Настройки», «Игровой процесс», "
 "«Управление», «Жесты касания»."
 
+#. placeholders: {name}
+msgid "{name} can take the wheel from the pause menu."
+msgstr ""
+
 msgid "for the corner"
 msgstr "для поворота"
 
@@ -25496,6 +25514,13 @@ msgstr ""
 "Запас хода около {range_text}, не хватит до места доставки, а заправок "
 "впереди на маршруте нет."
 
+#. placeholders: {name}, {distance_text}
+msgid "Next fuel: {name}, {distance_text}."
+msgstr ""
+
+msgid "No fuel stop before the destination."
+msgstr ""
+
 msgid "on the carrier account, and dispatch noted the service call"
 msgstr "за счёт перевозчика, и диспетчер записал вызов"
 
@@ -26386,6 +26411,10 @@ msgstr "Съезд к месту доставки"
 #. placeholders: {name}
 msgid "Exit for {name}"
 msgstr "Съезд к {name}"
+
+#. placeholders: {speed_value}
+msgid " Exit speed {speed_value}."
+msgstr " Скорость съезда {speed_value}."
 
 msgid " Traffic is tight."
 msgstr " Движение плотное."
@@ -30320,6 +30349,9 @@ msgstr "Вы уже отдохнули. {preview}"
 msgid "Inspection station."
 msgstr "Пункт контроля."
 
+msgid "No fuel here."
+msgstr ""
+
 #. placeholders: {summary}
 msgid "Loyalty program: {summary}"
 msgstr "Бонусная программа: {summary}"
@@ -32009,6 +32041,45 @@ msgstr ""
 msgid "{name} has parked and hands you the wheel. Your 10-hour rest is in."
 msgstr ""
 
+#. placeholders: {name}
+#. one sentence of a longer line
+msgid "{name} parked when their hours ran out, and you slept on."
+msgstr ""
+
+#. placeholders: {name}
+msgid ""
+"{name} parked when their hours ran out, and you slept on. Your 10-hour rest "
+"is in."
+msgstr ""
+
+#. placeholders: {name}
+#. one sentence of a longer line
+msgid ""
+"{name} pulled onto the shoulder when their hours ran out, with no lot in "
+"reach, and you slept on there."
+msgstr ""
+
+#. placeholders: {name}
+msgid ""
+"{name} pulled onto the shoulder when their hours ran out, with no lot in "
+"reach, and you slept on there. Your 10-hour rest is in."
+msgstr ""
+
+#. one sentence of a longer line
+msgid "Their hours run out before the next place to park."
+msgstr ""
+
+#. placeholders: {name}
+#. one sentence of a longer line
+msgid "{name} has parked for the end of their shift."
+msgstr ""
+
+#. placeholders: {name}
+msgid ""
+"{name} has parked for the end of their shift. Their hours run out before "
+"the next place to park."
+msgstr ""
+
 #. one sentence of a longer line
 msgid "The truck took damage."
 msgstr "Грузовик повреждён."
@@ -32151,6 +32222,30 @@ msgstr ""
 "{pay} За эти мили вы получаете половину опыта. Пока ведёт {name}, вы "
 "записаны в журнале как находящийся в спальнике."
 
+#. placeholders: {name}, {left}
+msgid ""
+"{name} has {left} of driving left, short of your 10-hour rest, so they park "
+"and you finish it there."
+msgstr ""
+
+#. one sentence of a longer line
+msgid "Shoulder rest is poor and risks a ticket or minor damage."
+msgstr ""
+
+#. placeholders: {name}, {left}
+#. one sentence of a longer line
+msgid ""
+"{name} has {left} of driving left, short of your 10-hour rest, and no truck "
+"lot in reach, so they stop on the shoulder and you finish it there."
+msgstr ""
+
+#. placeholders: {name}, {left}
+msgid ""
+"{name} has {left} of driving left, short of your 10-hour rest, and no truck "
+"lot in reach, so they stop on the shoulder and you finish it there. "
+"Shoulder rest is poor and risks a ticket or minor damage."
+msgstr ""
+
 #. placeholders: {name}
 msgid ""
 "{name} can drive from here, or take over later from the pause menu, while "
@@ -32237,14 +32332,17 @@ msgid ""
 "{name} drove on after a collision with {animal}. Damage {damage} percent."
 msgstr ""
 
-msgid "shift"
-msgstr "shift"
-
 msgid "rested"
 msgstr ""
 
 msgid "Refuel"
 msgstr "Refuel"
+
+msgid "last lot"
+msgstr ""
+
+msgid "shift"
+msgstr "shift"
 
 msgid "stalled"
 msgstr "stalled"
@@ -32338,6 +32436,13 @@ msgstr ""
 #. placeholders: {name}, {f}
 msgid "Team load: {name} drove {f} of the miles"
 msgstr "Командный рейс: доля миль за рулём у напарника {name}: {f}"
+
+#. placeholders: {name}
+msgid "{name} took a 30-minute break on the shoulder."
+msgstr ""
+
+msgid "slept on"
+msgstr ""
 
 #. placeholders: {name}, {gallons}, {place}
 msgid ""
@@ -33752,33 +33857,6 @@ msgid ""
 msgstr ""
 "{sentence_start}, с {clock_text} до {clock_text2}, {duration_text}, "
 "{location}{note}."
-
-msgid "Logbook has no recent duty entries yet."
-msgstr "В журнале пока нет недавних записей о смене."
-
-#. placeholders: {entry_line}
-#. one sentence of a longer line
-msgid "Latest entry: {entry_line}"
-msgstr "Последняя запись: {entry_line}"
-
-#. placeholders: {duration_text}, {duration_text2}, {duration_text3}, {duration_text4}
-#. one sentence of a longer line
-msgid ""
-"Logbook shows driving {duration_text}, on duty not driving "
-"{duration_text2}, off duty {duration_text3}, sleeper berth {duration_text4}."
-msgstr ""
-"По журналу: водил {duration_text}, на смене без вождения {duration_text2}, "
-"вне смены {duration_text3}, на спальном месте {duration_text4}."
-
-#. placeholders: {duration_text}, {duration_text2}, {duration_text3}, {duration_text4}, {entry_line}
-msgid ""
-"Logbook shows driving {duration_text}, on duty not driving "
-"{duration_text2}, off duty {duration_text3}, sleeper berth "
-"{duration_text4}. Latest entry: {entry_line}"
-msgstr ""
-"По журналу: водил {duration_text}, на смене без вождения {duration_text2}, "
-"вне смены {duration_text3}, на спальном месте {duration_text4}. Последняя "
-"запись: {entry_line}"
 
 msgid ""
 "Use up and down arrows to review logbook lines. Enter repeats the current "
@@ -35869,24 +35947,18 @@ msgstr ""
 msgid "Steering guide: {else}"
 msgstr "Подсказка руления: {else}"
 
-msgid "steer away from the lean"
-msgstr "рулить от смещения"
+msgid "steer away from the engine"
+msgstr ""
 
-msgid "steer toward the lean"
-msgstr "рулить к смещению"
+msgid "steer toward the engine"
+msgstr ""
 
 msgid ""
-"Which way to steer when the engine leans. Toward the lean is the default: "
-"the engine pans the way you have to turn, and comes back to the middle as "
-"you turn. Away from the lean flips it, for drivers who learned the other "
-"habit in audio racing games. Everything else about the guide is the same "
-"either way."
+"Which way to steer when the engine sound moves to one side. Toward the "
+"engine is the default: the engine moves to the side you have to turn to, "
+"then back to the middle as you turn. Away from the engine flips it, for "
+"drivers used to that from audio racing games."
 msgstr ""
-"В какую сторону рулить, когда двигатель смещается. «К смещению» стоит по "
-"умолчанию: звук двигателя уходит в ту сторону, куда нужно повернуть, и "
-"возвращается в центр, пока вы поворачиваете. «От смещения» переворачивает "
-"это, для водителей, которые привыкли к обратному в звуковых гоночных играх. "
-"Всё остальное в подсказке одинаково в обоих случаях."
 
 #. placeholders: {else}
 msgid "Lane guide sound: {else}"
@@ -39818,9 +39890,6 @@ msgstr "запрет на движение"
 msgid "out-of-service orders"
 msgstr "запретов на движение"
 
-msgid "crashes"
-msgstr "аварий"
-
 msgid "cargo claim"
 msgstr "претензия по грузу"
 
@@ -41797,6 +41866,66 @@ msgstr "закрывающая скобка"
 #. placeholders: {ch}
 msgid "cap {ch}"
 msgstr "заглавная {ch}"
+
+#~ msgid "Logbook has no recent duty entries yet."
+#~ msgstr "В журнале пока нет недавних записей о смене."
+
+#~ msgid "Latest entry: {entry_line}"
+#~ msgstr "Последняя запись: {entry_line}"
+
+#~ msgid ""
+#~ "Logbook shows driving {duration_text}, on duty not driving "
+#~ "{duration_text2}, off duty {duration_text3}, sleeper berth {duration_text4}."
+#~ msgstr ""
+#~ "По журналу: водил {duration_text}, на смене без вождения {duration_text2}, "
+#~ "вне смены {duration_text3}, на спальном месте {duration_text4}."
+
+#~ msgid ""
+#~ "Logbook shows driving {duration_text}, on duty not driving "
+#~ "{duration_text2}, off duty {duration_text3}, sleeper berth "
+#~ "{duration_text4}. Latest entry: {entry_line}"
+#~ msgstr ""
+#~ "По журналу: водил {duration_text}, на смене без вождения {duration_text2}, "
+#~ "вне смены {duration_text3}, на спальном месте {duration_text4}. Последняя "
+#~ "запись: {entry_line}"
+
+#~ msgid "{count_word} {noun} in the last year"
+#~ msgstr "{noun} за последний год: {count_word}"
+
+#~ msgid ""
+#~ "Not a sound of its own: it is the engine you are always hearing, leaning to "
+#~ "one side. Steer toward the lean, unless you have set the Steering guide row "
+#~ "to steer away from it. It leans the way the wheel should go, so it points "
+#~ "into a bend before you reach it and away from the edge you are drifting "
+#~ "toward. This is the one cue here you follow rather than avoid, and it eases "
+#~ "back to the middle as you make the turn or come straight."
+#~ msgstr ""
+#~ "Это не отдельный звук: это двигатель, который вы слышите всегда, смещённый "
+#~ "в одну сторону. Рулите в сторону смещения, если только в строке «Подсказка "
+#~ "руления» вы не выбрали рулить от него. Звук смещается туда, куда должен "
+#~ "идти руль, поэтому он указывает в поворот ещё до того, как вы до него "
+#~ "доедете, и в сторону от края, к которому вас сносит. Это единственная "
+#~ "подсказка здесь, за которой нужно следовать, а не избегать её, и она плавно "
+#~ "возвращается к центру, когда вы проходите поворот или выравниваетесь."
+
+#~ msgid "steer away from the lean"
+#~ msgstr "рулить от смещения"
+
+#~ msgid "steer toward the lean"
+#~ msgstr "рулить к смещению"
+
+#~ msgid ""
+#~ "Which way to steer when the engine leans. Toward the lean is the default: "
+#~ "the engine pans the way you have to turn, and comes back to the middle as "
+#~ "you turn. Away from the lean flips it, for drivers who learned the other "
+#~ "habit in audio racing games. Everything else about the guide is the same "
+#~ "either way."
+#~ msgstr ""
+#~ "В какую сторону рулить, когда двигатель смещается. «К смещению» стоит по "
+#~ "умолчанию: звук двигателя уходит в ту сторону, куда нужно повернуть, и "
+#~ "возвращается в центр, пока вы поворачиваете. «От смещения» переворачивает "
+#~ "это, для водителей, которые привыкли к обратному в звуковых гоночных играх. "
+#~ "Всё остальное в подсказке одинаково в обоих случаях."
 
 #~ msgid ", needs you back in {duration_text}"
 #~ msgstr ", позовёт вас обратно через {duration_text}"
