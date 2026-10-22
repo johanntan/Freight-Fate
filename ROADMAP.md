@@ -754,6 +754,11 @@ Everything found before 2026-09-25 moved to
       game has no shoulder pull-over to make it there yet (2026-10-19).
 - [ ] A slept-through stretch judges whether a scale ahead is open at the
       time the jump starts, not when the truck would reach it (2026-10-19).
+- [ ] One player's game stops responding every time they switch to
+      another window (player report, 2026-10-21); it does not happen on the
+      owner's machine. The game log now notes each focus change and names
+      the part of the frame that held the game for five seconds or more.
+      Waiting on that player's log.
 - [ ] How far past a lane closure the truck stays out is chosen by the
       closure's name; it belongs on the hazard row as a length, so a new
       long hazard (a spill, a work zone) gets it too (2026-10-19).
