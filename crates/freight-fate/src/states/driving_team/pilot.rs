@@ -33,7 +33,7 @@ const STALL_LIMIT_S: f64 = 180.0;
 const SHIFT_STOP_REACH_MI: f64 = 40.0;
 /// The pace a stop's reach is judged at: a stop farther than this covers in
 /// the time left before the break is due is out of reach.
-const REACH_MPH: f64 = 50.0;
+pub(crate) const REACH_MPH: f64 = 50.0;
 /// How close to the posted limit the co-driver brings the truck by hand
 /// before setting the cruise, and how far under it a set speed may sit
 /// before they tap it up.
@@ -65,7 +65,7 @@ pub struct Pilot {
     /// because the co-driver's hours ran out: no hurry to find the stop.
     pub rested: bool,
     /// The shift ends at the last lot the co-driver's hours reach, because
-    /// the player could not drive on from a hand-back on the road.
+    /// the player's rest is not in yet: they sleep out the rest there.
     pub last_lot: bool,
     /// Seconds spent on the accelerator with speed control off.
     pub accel_s: f64,
@@ -101,10 +101,6 @@ impl Pilot {
         }
     }
 }
-
-/// The player needs at least this much of their own hours to drive on from
-/// a hand-back on the road to a place to park.
-pub const HANDBACK_DRIVE_MIN: f64 = 30.0;
 
 impl DrivingState {
     /// One frame of the co-driver at the wheel. Runs before the frame
@@ -231,17 +227,45 @@ impl DrivingState {
             return Ok(pedals);
         }
 
+        // Their break is due with no stop reached and the player asleep:
+        // the 30 minutes are taken on the shoulder, and they drive on.
+        // Before the stops are planned: an overdue break also reads as the
+        // end of their hours there.
+        // With the rest in, `pilot_boundary` hands back for the break instead.
+        let making_for_break = matches!(pilot.making_for, Some((_, StopPurpose::Break)));
+        if co_driver::break_overdue(hos_of(ctx), &ctx.settings.hos_mode)
+            && !making_for_break
+            && self.co_driver_shoulder_due(ctx)
+        {
+            if speed > 0.5 {
+                pedals.brake = true;
+                return Ok(pedals);
+            }
+            self.co_driver_shoulder_break(ctx);
+            pilot.beat_s = KEY_BEAT_S;
+            return Ok(pedals);
+        }
+
         self.pilot_plan_stops(ctx, pilot);
         // The shift is ending with no stop to end it at, or the hours are
         // gone before the stop: the player takes over rather than the
-        // co-driver driving past the limit.
+        // co-driver driving past the limit. With the player's rest still
+        // owed, the co-driver stops on the shoulder instead and the rest is
+        // slept out there (see `shoulder`).
         if pilot.shift_over {
             let out = hos_of(ctx)
                 .remaining_min(&ctx.settings.hos_mode)
                 .is_some_and(|left| left <= 0.0);
             // Rested, they keep driving until a lot comes into reach.
             if (pilot.making_for.is_none() && !pilot.rested) || out {
-                return Err("shift".to_string());
+                if !self.co_driver_shoulder_due(ctx) {
+                    return Err("shift".to_string());
+                }
+                if speed > 0.5 {
+                    pedals.brake = true;
+                    return Ok(pedals);
+                }
+                return Err("shoulder".to_string());
             }
         }
 
@@ -521,50 +545,34 @@ impl DrivingState {
         left_min.max(0.0) / 60.0 * REACH_MPH
     }
 
-    /// The lot to end the shift at now, when handing back on the road would
-    /// leave the player driving with no hours: their rest will not be in
-    /// before the co-driver's hours run out, they have less than
-    /// [`HANDBACK_DRIVE_MIN`] of their own, and the next lot is the last
-    /// one the co-driver's hours reach short of the receiver. Without it the
-    /// co-driver drove to their last minutes and handed over at highway
-    /// speed with the nearest lot 76 miles on (player report, 2026-10-20).
+    /// The lot to end the shift at now: the player's rest will not be in
+    /// before the co-driver's hours run out, and the next lot is the last
+    /// one the co-driver's hours reach short of the receiver. The truck
+    /// parks there and the player sleeps out the rest of their 10 hours
+    /// (owner rule, 2026-10-21: the co-driver never wakes the player short
+    /// of their rest). Without it the co-driver drove to their last minutes
+    /// and handed over on the road, at highway speed with the nearest lot
+    /// 76 miles on (player report, 2026-10-20), or with the player's window
+    /// still running from before the sleep (player report, 2026-10-21).
     pub fn co_driver_last_lot(&self, ctx: &GameContext) -> Option<&RoadStop> {
         self.team.as_ref()?.wheel.as_ref()?;
         self.last_lot_ahead(
             ctx,
             hos_of(ctx),
             self.player_rest_left_min(ctx),
-            self.player_out_of_hours(ctx),
             self.trip.position_mi,
         )
     }
 
-    /// Whether the player in the sleeper has less than
-    /// [`HANDBACK_DRIVE_MIN`] of their own hours.
-    pub(crate) fn player_out_of_hours(&self, ctx: &GameContext) -> bool {
-        self.team.as_ref().is_some_and(|team| {
-            team.wheel.is_some()
-                && team
-                    .off_wheel_hos
-                    .remaining_min(&ctx.settings.hos_mode)
-                    .is_some_and(|left| left < HANDBACK_DRIVE_MIN)
-        })
-    }
-
     /// [`Self::co_driver_last_lot`] for the co-driver's logbook `co` with the
-    /// truck at `here`; `rest_left` is the player's rest still owed and
-    /// `player_out` whether they lack the hours to drive on.
+    /// truck at `here`; `rest_left` is the player's rest still owed.
     pub(crate) fn last_lot_ahead(
         &self,
         ctx: &GameContext,
         co: &ff_core::sim::hos::HosClock,
         rest_left: Option<f64>,
-        player_out: bool,
         here: f64,
     ) -> Option<&RoadStop> {
-        if !player_out {
-            return None;
-        }
         let hours_left = co_driver::shift_left_min(co, &ctx.settings.hos_mode)?
             - co_driver::CO_DRIVER_SUMMON_LEAD_MIN;
         if rest_left.is_none_or(|rest| rest <= hours_left) {
@@ -625,8 +633,13 @@ impl DrivingState {
         }
         // Their break is due with no stop reached: the player takes over
         // rather than the co-driver driving past the rule.
+        // With the player's rest still owed, the break is taken on the
+        // shoulder instead (see `shoulder`).
         let making_for_break = matches!(pilot.making_for, Some((_, StopPurpose::Break)));
-        if co_driver::break_overdue(hos_of(ctx), &ctx.settings.hos_mode) && !making_for_break {
+        if co_driver::break_overdue(hos_of(ctx), &ctx.settings.hos_mode)
+            && !making_for_break
+            && !self.co_driver_shoulder_due(ctx)
+        {
             return Some("break".to_string());
         }
         None

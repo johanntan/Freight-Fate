@@ -31069,6 +31069,30 @@ msgid "{name} has parked and hands you the wheel. Your 10-hour rest is in."
 msgstr ""
 "{name} park etti ve direksiyonu size veriyor. 10 saatlik dinlenmeniz tamam."
 
+#. placeholders: {name}
+#. one sentence of a longer line
+msgid "{name} parked when their hours ran out, and you slept on."
+msgstr ""
+
+#. placeholders: {name}
+msgid ""
+"{name} parked when their hours ran out, and you slept on. Your 10-hour rest "
+"is in."
+msgstr ""
+
+#. placeholders: {name}
+#. one sentence of a longer line
+msgid ""
+"{name} pulled onto the shoulder when their hours ran out, with no lot in "
+"reach, and you slept on there."
+msgstr ""
+
+#. placeholders: {name}
+msgid ""
+"{name} pulled onto the shoulder when their hours ran out, with no lot in "
+"reach, and you slept on there. Your 10-hour rest is in."
+msgstr ""
+
 #. one sentence of a longer line
 msgid "Their hours run out before the next place to park."
 msgstr "Sonraki park yerine varmadan süreleri bitiyor."
@@ -31228,11 +31252,29 @@ msgstr ""
 "{pay} Bu millerden deneyimin yarısını kazanırsınız. {name} sürerken "
 "kayıtlarda kabin yatağında görünürsünüz."
 
-#. placeholders: {name}, {duration_text}
+#. placeholders: {name}, {left}
 msgid ""
-"{name} has {duration_text} of driving left, short of your 10-hour rest."
+"{name} has {left} of driving left, short of your 10-hour rest, so they park "
+"and you finish it there."
 msgstr ""
-"{name} için {duration_text} sürüş kaldı, 10 saatlik dinlenmenize yetmiyor."
+
+#. one sentence of a longer line
+msgid "Shoulder rest is poor and risks a ticket or minor damage."
+msgstr ""
+
+#. placeholders: {name}, {left}
+#. one sentence of a longer line
+msgid ""
+"{name} has {left} of driving left, short of your 10-hour rest, and no truck "
+"lot in reach, so they stop on the shoulder and you finish it there."
+msgstr ""
+
+#. placeholders: {name}, {left}
+msgid ""
+"{name} has {left} of driving left, short of your 10-hour rest, and no truck "
+"lot in reach, so they stop on the shoulder and you finish it there. "
+"Shoulder rest is poor and risks a ticket or minor damage."
+msgstr ""
 
 #. placeholders: {name}
 msgid ""
@@ -31437,6 +31479,13 @@ msgstr ""
 #. placeholders: {name}, {f}
 msgid "Team load: {name} drove {f} of the miles"
 msgstr "Ekip yükü: millerin {f} kısmını {name} sürdü"
+
+#. placeholders: {name}
+msgid "{name} took a 30-minute break on the shoulder."
+msgstr ""
+
+msgid "slept on"
+msgstr ""
 
 #. placeholders: {name}, {gallons}, {place}
 msgid ""
@@ -40689,6 +40738,11 @@ msgstr "sağ parantez"
 #. placeholders: {ch}
 msgid "cap {ch}"
 msgstr "büyük {ch}"
+
+#~ msgid ""
+#~ "{name} has {duration_text} of driving left, short of your 10-hour rest."
+#~ msgstr ""
+#~ "{name} için {duration_text} sürüş kaldı, 10 saatlik dinlenmenize yetmiyor."
 
 #~ msgid "Logbook has no recent duty entries yet."
 #~ msgstr "Sürüş defterinde henüz yakın tarihli görev kaydı yok."

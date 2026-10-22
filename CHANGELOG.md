@@ -216,7 +216,8 @@
 - **The Record line in Career stats now counts running off the road asleep and crashes.** It said clean while the list below it named them.
 - **Playlists saved as UTF-16, as Windows Media Player does, now show up on the radio dial.** The Playlists folder no longer reads as empty.
 - **Resuming a saved trip no longer plays several police sirens at once.** Troopers you passed before saving stay quiet.
-- **A co-driver short of hours now parks before handing back when you have none left.** They stop at the last lot in reach, so you can finish your rest there.
+- **A co-driver short of hours now parks and lets you finish your 10-hour rest.** They stop at the last lot in reach, or on the shoulder when none is.
+- **A co-driver's 30-minute break no longer wakes you.** With no stop in reach, they take it on the shoulder and drive on.
 - **The handover rows say when a co-driver cannot cover your whole rest.** The row's help gives their driving time left.
 - **Toms River to Newark now takes I-195 and the Turnpike instead of the truck-banned Garden State Parkway.** It pays 85 miles, up from 66.
 - **Continuing straight onto a street such as Brighton Boulevard no longer counts as a right turn.**
